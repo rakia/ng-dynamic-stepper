@@ -1,0 +1,56 @@
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+#create-stepper {
+
+
+  .center {
+    position: relative;
+    overflow: hidden;
+
+    .content {
+      .step {
+        position: relative; // absolute
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        padding: 48px;
+        overflow: auto;
+        -webkit-overflow-scrolling: touch;
+        &.ng-animating {
+          overflow: hidden;
+        }
+        @media (max-width: 720px) {
+          padding: 0 0 120px 0;
+        }
+        .step-content {
+          background-color: white;
+          padding: 24px;
+          max-width: 720px;
+          margin: 0 auto;
+          width: 100%;
+          border-radius: 8px;
+        }
+      }
+    }
+
+    .step-navigation {
+      position: absolute;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      bottom: 32px;
+      max-width: 944px;
+      padding: 0 24px;
+      width: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      .previous {
+        margin-right: auto;
+      }
+      .next, .done {
+        margin-left: auto;
+      }
+    }
+  }
+}

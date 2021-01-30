@@ -1,0 +1,26 @@
+<dynamic-stepper [steps]="steps"
+                 [currentStep]="currentStep"
+                 [showGoBack]="true"
+                 (goBack)="goBack()"
+                 (gotoNextStep)="gotoNextStep()"
+                 (gotoPreviousStep)="gotoPreviousStep()">
+
+    <!-- STEP 1 -->
+    <div *ngIf="currentStep === 0">
+      <create-step1 [formStep1]="formStep1" [entityTypes]="entityTypes"></create-step1>
+    </div>
+    <!-- / STEP 1 -->
+
+    <!-- STEP 2 -->
+    <div *ngIf="currentStep === 0">
+      <create-step2 [form]="formStep1"
+                    [entity]="entity"
+                    [entityTypes]="entityTypes"
+                    [currencyTypes]="currencyTypes"
+                    [currencyRate]="currencyRate"
+                    (getCurrencyRate)="getCurrencyRate.emit($event)">
+      </create-step2>
+    </div>
+    <!-- / STEP 2 -->
+
+</dynamic-stepper>

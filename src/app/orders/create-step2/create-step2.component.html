@@ -1,0 +1,58 @@
+<form [formGroup]="form" class="mb-8 mt-24 mb-24" fxLayout="row wrap" fxLayoutGap="8px">
+
+  <mat-form-field fxFlex>
+    <mat-label>{{ 'stock.stockReceipt.FisType' | translate }}</mat-label>
+    <mat-select formControlName="entityType">
+      <mat-option *ngFor="let entityType of entityTypes" [value]="entityType.value">{{entityType.label}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field fxFlex>
+    <mat-label>{{ 'stock.stockReceipt.Belgeno' | translate }}</mat-label>
+    <input matInput formControlName="Belgeno" name="Belgeno"/>
+  </mat-form-field>
+
+  <mat-form-field fxFlex>
+    <mat-label>{{ 'stock.stockReceipt.Tarih' | translate }}</mat-label>
+    <input matInput [matDatepicker]="Tarih" formControlName="Tarih" name="Tarih" required/>
+    <mat-datepicker-toggle matSuffix [for]="Tarih"></mat-datepicker-toggle>
+    <mat-datepicker #Tarih></mat-datepicker>
+  </mat-form-field>
+
+  <mat-form-field fxFlex><!-- *ngIf="entity?.FisType !== 3" -->
+    <mat-label>{{ 'stock.stockReceipt.Sube' | translate }}</mat-label>
+    <mat-select formControlName="Sube" name="Sube" required>
+      <mat-option *ngFor="let item of ambarList" [value]="item.value">{{item.label}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field *ngIf="entity?.FisType === 3" fxFlex>
+    <mat-label>{{ 'stock.stockReceipt.Fambar' | translate }}</mat-label>
+    <mat-select formControlName="Fambar" name="Fambar">
+      <mat-option *ngFor="let item of ambarList" [value]="item.value">{{item.label}}</mat-option>
+    </mat-select>
+    <mat-error *ngIf="form.get('Fambar').hasError('required')">{{ 'messages.errors.fieldRequired' | translate }}</mat-error>
+  </mat-form-field>
+
+  <mat-form-field *ngIf="entity?.FisType === 3" fxFlex>
+    <mat-label>{{ 'stock.stockReceipt.Sambar' | translate }}</mat-label>
+    <mat-select formControlName="Sambar" name="Sambar">
+      <mat-option *ngFor="let item of ambarList" [value]="item.value">{{item.label}}</mat-option>
+    </mat-select>
+    <mat-error *ngIf="form.get('Sambar').hasError('required')">{{ 'messages.errors.fieldRequired' | translate }}</mat-error>
+  </mat-form-field>
+
+  <mat-form-field fxFlex>
+    <mat-label>{{ 'stock.stockReceipt.Dovcins' | translate }}</mat-label>
+    <mat-select formControlName="Dovcins" name="Dovcins" required>
+      <!--mat-option value=""></mat-option-->
+      <mat-option *ngFor="let item of currencyTypes" [value]="item.label">{{item.label}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field fxFlex>
+    <mat-label>{{ 'stock.stockReceipt.Dovkuru' | translate }}</mat-label>
+    <input matInput formControlName="Dovkuru" name="Dovkuru" type="number" [required]="form.get('Dovcins').value"/>
+  </mat-form-field>
+
+</form>

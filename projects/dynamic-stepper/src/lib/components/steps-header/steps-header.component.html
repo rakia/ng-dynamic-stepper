@@ -1,0 +1,27 @@
+<!-- HEADER -->
+<div class="header accent p-16" fxLayout="row" fxLayoutAlign="start center">
+
+  <button *ngIf="showGoBack" mat-icon-button class="mr-16" (click)="goBack.emit()">
+    <mat-icon>arrow_back</mat-icon>
+  </button>
+
+  <!-- STEPS HEADER -->
+  <div fxFlex fxLayout="row" fxLayoutAlign="start center">
+
+    <div class="steps-breadcrumb" fxLayout="row" fxLayoutAlign="start center"
+         *ngFor="let step of steps; let i = index; let last = last; let first = first"
+         (click)="onGotoStep(i)"
+         [ngClass]="{'current': currentStep === i, 'completed': currentStep > i, 'last': last, 'first': first}">
+
+      <div class="index"><span>{{i + 1}}</span></div>
+      <div class="title pr-8">{{ step.title | translate }}</div>
+      <mat-icon class="s-26 pr-8" *ngIf="!last">chevron_right</mat-icon>
+    </div>
+
+  </div>
+  <!-- / STEPS HEADER -->
+
+  <ng-content></ng-content>
+
+</div>
+<!-- / HEADER -->

@@ -1,0 +1,38 @@
+.header {
+  height: 50px;
+  min-height: 50px;
+  max-height: 50px;
+}
+
+.steps-breadcrumb {
+  .title {
+    font-size: 16px;
+  }
+  .title, .index span, .mat-icon {
+    color: #b9d4e2;
+  }
+  .index {
+    display: flex;
+    margin-right: 6px;
+    span {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      width: 28px;
+      min-width: 28px;
+      max-width: 28px;
+      height: 28px;
+      border-radius: 100%;
+      border: 2px solid;
+      font-weight: bold;
+      font-size: 12px;
+      z-index: 10;
+    }
+  }
+  &.current {
+    .title, .index span, .mat-icon {
+      color: white;
+    }
+  }
+}

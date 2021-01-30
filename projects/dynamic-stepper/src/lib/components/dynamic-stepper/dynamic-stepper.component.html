@@ -1,0 +1,60 @@
+<div id="create-stepper" class="page-layout simple fullwidth">
+
+    <!-- CENTER -->
+    <div class="center">
+
+        <!-- STEPS HEADER -->
+        <steps-header [steps]="steps"
+                      [currentStep]="currentStep"
+                      [showGoBack]="showGoBack"
+                      (gotoStep)="onGotoStep($event)"
+                      (goBack)="goBack.emit()">
+          <ng-container *ngTemplateOutlet="stepsHeaderContent"></ng-container>
+        </steps-header>
+        <!-- / STEPS HEADER -->
+
+        <!-- CONTENT: STEPS HTML -->
+        <div class="content">
+
+          <div fxFlex fxLayout="row" fxLayoutAlign="center center" class="step" fusePerfectScrollbar [@slideIn]="animationDirection">
+
+            <div class="step-content">
+              <ng-content></ng-content>
+            </div>
+            <!--ng-template ngFor let-step [ngForOf]="steps"></ng-template>
+            <ng-template #update let-mode="mode" let-entity="entity">
+              <ng-content select="[update]"></ng-content>
+            </ng-template>
+            <div *ngFor="let step of steps" class="step-content" [innerHTML]="step.content"></div-->
+          </div>
+        </div>
+        <!-- / CONTENT: STEPS HTML -->
+
+        <!-- NEXT - PREVIOUS BUTTONS -->
+        <div class="step-navigation">
+            <button mat-fab class="previous mat-accent fuse-white-fg"
+                    (click)="onGotoPreviousStep()"
+                    [disabled]="currentStep === 0"
+                    [fxHide]="currentStep === 0">
+                <mat-icon>chevron_left</mat-icon>
+            </button>
+
+            <button mat-fab class="next mat-accent fuse-white-fg"
+                    (click)="onGotoNextStep()"
+                    [disabled]="currentStep === totalSteps - 1"><!-- [fxHide]="currentStep === totalSteps - 1" -->
+                <mat-icon>chevron_right</mat-icon>
+            </button>
+
+            <!--button mat-fab class="done green-600"
+                    (click)="confirmLastStep.emit()"
+                    [disabled]="currentStep !== totalSteps - 1"
+                    [fxShow]="currentStep === totalSteps - 1">
+                <mat-icon>check</mat-icon>
+            </button-->
+        </div>
+        <!-- / NEXT - PREVIOUS BUTTONS -->
+
+    </div>
+    <!-- / CENTER -->
+
+</div>

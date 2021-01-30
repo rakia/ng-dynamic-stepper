@@ -1,0 +1,90 @@
+#stock-receipt-maintenance {
+
+  .steps-breadcrumb {
+    .title {
+      font-size: 16px;
+    }
+    .title, .index span, .mat-icon {
+      color: #E0E0E0;
+    }
+    .index {
+      display: flex;
+      margin-right: 6px;
+      span {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        width: 28px;
+        min-width: 28px;
+        max-width: 28px;
+        height: 28px;
+        border-radius: 100%;
+        border: 2px solid;
+        font-weight: bold;
+        font-size: 12px;
+        z-index: 10;
+      }
+    }
+    &.current {
+      .title, .index span, .mat-icon {
+        color: white;
+      }
+    }
+  }
+
+  .center {
+    position: relative;
+    overflow: hidden;
+    .header {
+      height: 64px;
+      min-height: 64px;
+      max-height: 64px;
+    }
+    .content {
+      .step {
+        position: relative; // absolute
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        padding: 48px;
+        overflow: auto;
+        -webkit-overflow-scrolling: touch;
+        &.ng-animating {
+          overflow: hidden;
+        }
+        @media (max-width: 720px) {
+          padding: 0 0 120px 0;
+        }
+        .step-content {
+          background-color: white;
+          padding: 24px;
+          max-width: 720px;
+          margin: 0 auto;
+          width: 100%;
+          border-radius: 8px;
+        }
+      }
+    }
+
+    .step-navigation {
+      position: absolute;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      bottom: 32px;
+      max-width: 944px;
+      padding: 0 24px;
+      width: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      .previous {
+        margin-right: auto;
+      }
+      .next, .done {
+        margin-left: auto;
+      }
+    }
+  }
+}

@@ -1,0 +1,11 @@
+<form [formGroup]="formStep1" class="mb-8 mt-24 mb-24" fxLayout="row wrap">
+
+  <mat-form-field fxFlex>
+    <mat-label>{{ 'stock.stockReceipt.FisType' | translate }}</mat-label>
+    <mat-select formControlName="entityType" name="entityType">
+      <mat-option value=""></mat-option>
+      <mat-option *ngFor="let entityType of entityTypes" [value]="entityType.value">{{entityType.label}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+</form>

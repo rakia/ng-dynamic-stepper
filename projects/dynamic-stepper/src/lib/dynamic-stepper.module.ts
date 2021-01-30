@@ -1,12 +1,24 @@
-import { NgModule } from '@angular/core';
-import { DynamicStepperComponent } from './dynamic-stepper.component';
+import { NgModule         } from '@angular/core';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { TranslateModule  } from '@ngx-translate/core';
 
-
+import { StepsHeaderComponent    } from './components/steps-header/steps-header.component';
+import { DynamicStepperComponent } from './index';
+import { AngularMaterialModule   } from './shared/angular-material.module';
 
 @NgModule({
-  declarations: [DynamicStepperComponent],
-  imports: [
+  declarations: [
+    DynamicStepperComponent,
+    StepsHeaderComponent
   ],
-  exports: [DynamicStepperComponent]
+  imports: [
+    AngularMaterialModule,
+    FlexLayoutModule,
+    TranslateModule
+  ],
+  exports: [
+    DynamicStepperComponent,
+    StepsHeaderComponent
+  ]
 })
 export class DynamicStepperModule { }
