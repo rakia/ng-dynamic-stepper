@@ -15,10 +15,7 @@
     <div *ngIf="currentStep === 0">
       <create-step2 [form]="formStep1"
                     [entity]="entity"
-                    [entityTypes]="entityTypes"
-                    [currencyTypes]="currencyTypes"
-                    [currencyRate]="currencyRate"
-                    (getCurrencyRate)="getCurrencyRate.emit($event)">
+                    [entityTypes]="entityTypes">
       </create-step2>
     </div>
     <!-- / STEP 2 -->

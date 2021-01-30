@@ -2,8 +2,8 @@ import { Component, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, S
 import { FormBuilder, Validators } from '@angular/forms';
 import { Subject } from 'rxjs';
 
-import { Step       } from '../../../../projects/dynamic-stepper/src/lib';
-import { Order      } from '../models/order.model';
+import { Step      } from '../../../../projects/dynamic-stepper/src/lib';
+import { Order     } from '../models/order.model';
 import { OrderType } from '../models/order-type.model';
 
 @Component({
@@ -13,12 +13,10 @@ import { OrderType } from '../models/order-type.model';
 })
 export class CreateStepperComponent implements OnInit, OnChanges, OnDestroy {
 
-  @Input()  entity:       Order;
-  @Input()  entityTypes:  OrderType[];
-  @Input()  currencyRate: number;
-  @Output() getCurrencyRate = new EventEmitter<string>();
-  @Output() createEntity    = new EventEmitter<Order>();
-  @Output() gotoInquiry     = new EventEmitter<Order>();
+  @Input()  entity:      Order;
+  @Input()  entityTypes: OrderType[];
+  @Output() createEntity = new EventEmitter<Order>();
+  @Output() gotoInquiry  = new EventEmitter<Order>();
 
   steps: Step[] = [
     {title: 'entityStates.draft',    content: ''},

@@ -15,8 +15,6 @@ export class CreateStep2Component implements OnInit, OnChanges, OnDestroy {
   @Input()  form:         FormGroup;
   @Input()  entity:       Order;
   @Input()  entityTypes:  OrderType[];
-  @Input()  currencyRate: number;
-  @Output() getCurrencyRate = new EventEmitter<string>();
 
   _unsubscribeAll = new Subject<boolean>();
 
