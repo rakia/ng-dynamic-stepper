@@ -1,6 +1,7 @@
-import { BrowserModule   } from '@angular/platform-browser';
-import { NgModule        } from '@angular/core';
-import { TranslateModule } from '@ngx-translate/core';
+import { BrowserModule           } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NgModule                } from '@angular/core';
+import { TranslateModule         } from '@ngx-translate/core';
 
 import { AngularMaterialModule       } from './shared/angular-material.module';
 import { AppRoutingModule            } from './app-routing.module';
@@ -19,6 +20,7 @@ import { DynamicStepperModule        } from '../../projects/dynamic-stepper/src/
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     DynamicStepperModule,
     AngularMaterialModule,
