@@ -19,9 +19,10 @@ export class CreateStepperComponent implements OnInit, OnChanges, OnDestroy {
   @Output() gotoInquiry  = new EventEmitter<Order>();
 
   steps: Step[] = [
-    {title: 'entityStates.draft',    content: ''},
-    {title: 'entityStates.saved',    content: ''},
-    {title: 'entityStates.complete', content: ''},
+    {title: 'Draft',    content: ''},
+    {title: 'Saved',    content: ''},
+    {title: 'Complete', content: ''},
+    {title: 'Canceled', content: ''}
   ];
   totalSteps: number;
   currentStep: number = 0;

@@ -1,26 +1,26 @@
 <form [formGroup]="form" class="mb-8 mt-24 mb-24" fxLayout="row wrap" fxLayoutGap="8px">
 
   <mat-form-field fxFlex>
-    <mat-label>{{ 'stock.stockReceipt.FisType' | translate }}</mat-label>
+    <mat-label>Order Type</mat-label>
     <mat-select formControlName="entityType">
       <mat-option *ngFor="let entityType of entityTypes" [value]="entityType.value">{{entityType.label}}</mat-option>
     </mat-select>
   </mat-form-field>
 
   <mat-form-field fxFlex>
-    <mat-label>{{ 'stock.stockReceipt.Belgeno' | translate }}</mat-label>
+    <mat-label>Order Number</mat-label>
     <input matInput formControlName="Belgeno" name="Belgeno"/>
   </mat-form-field>
 
   <mat-form-field fxFlex>
-    <mat-label>{{ 'stock.stockReceipt.Tarih' | translate }}</mat-label>
+    <mat-label>Date</mat-label>
     <input matInput [matDatepicker]="Tarih" formControlName="Tarih" name="Tarih" required/>
     <mat-datepicker-toggle matSuffix [for]="Tarih"></mat-datepicker-toggle>
     <mat-datepicker #Tarih></mat-datepicker>
   </mat-form-field>
 
   <mat-form-field fxFlex>
-    <mat-label>{{ 'stock.stockReceipt.Dovkuru' | translate }}</mat-label>
+    <mat-label>Description</mat-label>
     <input matInput formControlName="Dovkuru" name="Dovkuru" type="number" [required]="form.get('Dovcins').value"/>
   </mat-form-field>
 

@@ -1,6 +1,7 @@
 import { NgModule         } from '@angular/core';
+import { BrowserModule    } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { TranslateModule  } from '@ngx-translate/core';
 
 import { StepsHeaderComponent    } from './components/steps-header/steps-header.component';
 import { DynamicStepperComponent } from './index';
@@ -12,9 +13,10 @@ import { AngularMaterialModule   } from './shared/angular-material.module';
     StepsHeaderComponent
   ],
   imports: [
+    BrowserModule,
+    BrowserAnimationsModule,
     AngularMaterialModule,
-    FlexLayoutModule,
-    TranslateModule
+    FlexLayoutModule
   ],
   exports: [
     DynamicStepperComponent,

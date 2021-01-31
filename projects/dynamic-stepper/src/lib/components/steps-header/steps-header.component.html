@@ -1,5 +1,5 @@
 <!-- HEADER -->
-<div class="header accent p-16" fxLayout="row" fxLayoutAlign="start center">
+<mat-toolbar color="primary" class="header p-16" fxLayout="row" fxLayoutAlign="start center">
 
   <button *ngIf="showGoBack" mat-icon-button class="mr-16" (click)="goBack.emit()">
     <mat-icon>arrow_back</mat-icon>
@@ -14,8 +14,8 @@
          [ngClass]="{'current': currentStep === i, 'completed': currentStep > i, 'last': last, 'first': first}">
 
       <div class="index"><span>{{i + 1}}</span></div>
-      <div class="title pr-8">{{ step.title | translate }}</div>
-      <mat-icon class="s-26 pr-8" *ngIf="!last">chevron_right</mat-icon>
+      <div class="title pr-8">{{ step.title }}</div>
+      <mat-icon class="pr-8" *ngIf="!last">chevron_right</mat-icon>
     </div>
 
   </div>
@@ -23,5 +23,5 @@
 
   <ng-content></ng-content>
 
-</div>
+</mat-toolbar>
 <!-- / HEADER -->

@@ -1,11 +1,9 @@
 import { NgModule                         } from '@angular/core';
 import { ScrollingModule                  } from '@angular/cdk/scrolling';
 import { OverlayModule                    } from '@angular/cdk/overlay';
-import { BrowserModule                    } from '@angular/platform-browser';
-import { BrowserAnimationsModule          } from '@angular/platform-browser/animations';
 import { FlexModule                       } from '@angular/flex-layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatRippleModule          } from '@angular/material/core';
+import { MatNativeDateModule, MatRippleModule } from '@angular/material/core';
 import { MatAutocompleteModule    } from '@angular/material/autocomplete';
 import { MatBadgeModule           } from '@angular/material/badge';
 import { MatButtonModule          } from '@angular/material/button';
@@ -41,8 +39,6 @@ import { MatFormFieldModule       } from '@angular/material/form-field';
 
 @NgModule({
   exports: [
-    BrowserModule,
-    BrowserAnimationsModule,
     FlexModule,
     FormsModule,
     MatAutocompleteModule,
@@ -62,6 +58,7 @@ import { MatFormFieldModule       } from '@angular/material/form-field';
     MatInputModule,
     MatListModule,
     MatMenuModule,
+    MatNativeDateModule,
     MatPaginatorModule,
     MatProgressBarModule,
     MatProgressSpinnerModule,

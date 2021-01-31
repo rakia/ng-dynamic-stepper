@@ -1,1 +1,18 @@
 /* You can add global styles to this file, and also import other style files */
+
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+* {
+  font-size: 14px;
+
+  .mat-icon {
+    font-size: 20px;
+  }
+}
+
+.p-16 {
+  padding: 16px;
+}
+.pr-8 {
+  padding-right: 8px;
+}
