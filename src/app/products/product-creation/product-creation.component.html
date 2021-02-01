@@ -1,9 +1,9 @@
-<dynamic-stepper [steps]="steps"
-                 [currentStep]="currentStep"
-                 [showGoBack]="true"
-                 (goBack)="goBack()"
-                 (gotoNextStep)="gotoNextStep()"
-                 (gotoPreviousStep)="gotoPreviousStep()">
+<lib-dynamic-stepper [steps]="steps"
+                     [currentStep]="currentStep"
+                     [showGoBack]="true"
+                     (goBack)="goBack()"
+                     (gotoNextStep)="gotoNextStep()"
+                     (gotoPreviousStep)="gotoPreviousStep()">
 
     <!-- STEP 1 -->
     <div *ngIf="currentStep === 0">
@@ -12,7 +12,7 @@
     <!-- / STEP 1 -->
 
     <!-- STEP 2 -->
-    <div *ngIf="currentStep === 0">
+    <div *ngIf="currentStep === 1">
       <create-step2 [form]="formStep1"
                     [entity]="entity"
                     [entityTypes]="entityTypes">
@@ -20,4 +20,4 @@
     </div>
     <!-- / STEP 2 -->
 
-</dynamic-stepper>
+</lib-dynamic-stepper>

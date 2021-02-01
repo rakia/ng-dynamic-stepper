@@ -16,7 +16,7 @@
         <!-- CONTENT: STEPS HTML -->
         <div class="content">
 
-          <div fxFlex fxLayout="row" fxLayoutAlign="center center" class="step" fusePerfectScrollbar>
+          <div fxFlex fxLayout="row" fxLayoutAlign="center center" class="step">
 
             <div class="step-content">
               <ng-content></ng-content>
@@ -32,14 +32,14 @@
 
         <!-- NEXT - PREVIOUS BUTTONS -->
         <div class="step-navigation">
-            <button mat-fab class="previous mat-accent fuse-white-fg"
+            <button mat-fab class="previous mat-accent"
                     (click)="onGotoPreviousStep()"
                     [disabled]="currentStep === 0"
                     [fxHide]="currentStep === 0">
                 <mat-icon>chevron_left</mat-icon>
             </button>
 
-            <button mat-fab class="next mat-accent fuse-white-fg"
+            <button mat-fab class="next mat-accent"
                     (click)="onGotoNextStep()"
                     [disabled]="currentStep === totalSteps - 1"><!-- [fxHide]="currentStep === totalSteps - 1" -->
                 <mat-icon>chevron_right</mat-icon>

@@ -8,10 +8,10 @@ import { OrderType } from '../models/order-type.model';
 
 @Component({
     selector: 'order',
-    templateUrl: './create-stepper.component.html',
-    styleUrls: ['./create-stepper.component.scss']
+    templateUrl: './product-creation.component.html',
+    styleUrls: ['./product-creation.component.scss']
 })
-export class CreateStepperComponent implements OnInit, OnChanges, OnDestroy {
+export class ProductCreationComponent implements OnInit, OnChanges, OnDestroy {
 
   @Input()  entity:      Order;
   @Input()  entityTypes: OrderType[];

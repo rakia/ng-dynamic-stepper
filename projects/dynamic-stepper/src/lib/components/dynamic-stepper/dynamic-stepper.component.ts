@@ -9,16 +9,16 @@ import { Subject } from 'rxjs';
 import { Step } from '../../models/step.model';
 
 @Component({
-  selector: 'dynamic-stepper',
+  selector: 'lib-dynamic-stepper',
   templateUrl: './dynamic-stepper.component.html',
   styleUrls: ['./dynamic-stepper.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
 export class DynamicStepperComponent implements OnInit, OnChanges, OnDestroy, AfterViewInit {
 
-  @Input()  steps:               Step[];
-  @Input()  currentStep:         number = 0;
-  @Input()  showGoBack?:         boolean;
+  @Input()  steps:       Step[];
+  @Input()  currentStep: number = 0;
+  @Input()  showGoBack?: boolean;
   @Output() goBack           = new EventEmitter<void>();
   @Output() gotoNextStep     = new EventEmitter<void>();
   @Output() gotoPreviousStep = new EventEmitter<void>();
