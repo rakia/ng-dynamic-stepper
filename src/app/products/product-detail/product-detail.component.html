@@ -57,7 +57,6 @@
                 <form name="productForm" [formGroup]="productForm" class="product w-100-p" fxLayout="column" fxFlex>
 
                     <mat-tab-group>
-
                         <mat-tab label="Basic Info">
 
                             <div class="tab-content p-24">
@@ -85,38 +84,12 @@
 
                                     <mat-chip-list #categoryList name="categories" formControlName="categories">
 
-                                        <mat-chip *ngFor="let category of product.categories"
-                                                  [removable]="true" (removed)="product.removeCategory(category)">
+                                        <mat-chip *ngFor="let category of product.categories" [removable]="false">
                                             {{category}}
                                             <mat-icon matChipRemove>cancel</mat-icon>
                                         </mat-chip>
 
-                                        <input [matChipInputFor]="categoryList"
-                                               [matChipInputAddOnBlur]="true"
-                                               (matChipInputTokenEnd)="product.addCategory($event)"/>
-
                                     </mat-chip-list>
-
-                                </mat-form-field>
-
-                                <mat-form-field appearance="outline" floatLabel="always" class="w-100-p">
-
-                                    <mat-label>Tags</mat-label>
-
-                                    <mat-chip-list #tagList name="tags" formControlName="tags">
-
-                                        <mat-chip *ngFor="let tag of product.tags"
-                                                  [removable]="true" (removed)="product.removeTag(tag)">
-                                            {{tag}}
-                                            <mat-icon matChipRemove>cancel</mat-icon>
-                                        </mat-chip>
-
-                                        <input [matChipInputFor]="tagList"
-                                               [matChipInputAddOnBlur]="true"
-                                               (matChipInputTokenEnd)="product.addTag($event)"/>
-
-                                    </mat-chip-list>
-
                                 </mat-form-field>
 
                             </div>

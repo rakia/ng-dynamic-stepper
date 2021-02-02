@@ -41,16 +41,16 @@
 
             <button mat-fab class="next mat-accent"
                     (click)="onGotoNextStep()"
-                    [disabled]="currentStep === totalSteps - 1"><!-- [fxHide]="currentStep === totalSteps - 1" -->
+                    [fxHide]="currentStep === totalSteps - 1">
                 <mat-icon>chevron_right</mat-icon>
             </button>
 
-            <!--button mat-fab class="done green-600"
+            <button mat-fab
                     (click)="confirmLastStep.emit()"
                     [disabled]="currentStep !== totalSteps - 1"
                     [fxShow]="currentStep === totalSteps - 1">
                 <mat-icon>check</mat-icon>
-            </button-->
+            </button>
         </div>
         <!-- / NEXT - PREVIOUS BUTTONS -->
 

@@ -6,7 +6,6 @@ export class Product {
   handle: string;
   description: string;
   categories: string[];
-  tags: string[];
   priceTaxExcl: number;
   priceTaxIncl: number;
   taxRate: number;
@@ -31,7 +30,6 @@ export class Product {
     this.handle = product.handle;
     this.description = product.description || '';
     this.categories = product.categories || [];
-    this.tags = product.tags || [];
     this.priceTaxExcl = product.priceTaxExcl || 0;
     this.priceTaxIncl = product.priceTaxIncl || 0;
     this.taxRate = product.taxRate || 0;
@@ -44,67 +42,5 @@ export class Product {
     this.weight = product.weight || 0;
     this.extraShippingFee = product.extraShippingFee || 0;
     this.active = product.active || true;
-  }
-
-  /**
-   * Add category
-   * @param {MatChipInputEvent} event
-   */
-  addCategory(event: MatChipInputEvent): void {
-    const input = event.input;
-    const value = event.value;
-
-    // Add category
-    if ( value ) {
-      this.categories.push(value);
-    }
-
-    // Reset the input value
-    if ( input ) {
-      input.value = '';
-    }
-  }
-
-  /**
-   * Remove category
-   * @param category
-   */
-  removeCategory(category): void {
-    const index = this.categories.indexOf(category);
-
-    if ( index >= 0 ) {
-      this.categories.splice(index, 1);
-    }
-  }
-
-  /**
-   * Add tag
-   * @param {MatChipInputEvent} event
-   */
-  addTag(event: MatChipInputEvent): void {
-    const input = event.input;
-    const value = event.value;
-
-    // Add tag
-    if ( value ) {
-      this.tags.push(value);
-    }
-
-    // Reset the input value
-    if ( input ) {
-      input.value = '';
-    }
-  }
-
-  /**
-   * Remove tag
-   * @param tag
-   */
-  removeTag(tag): void {
-    const index = this.tags.indexOf(tag);
-
-    if ( index >= 0 ) {
-      this.tags.splice(index, 1);
-    }
   }
 }

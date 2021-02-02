@@ -5,8 +5,9 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
-import { Product } from '../models/product.model';
+import { Product        } from '../models/product.model';
 import { ProductService } from '../services/product.service';
+import { Step           } from '../../../../projects/dynamic-stepper/src/lib';
 
 @Component({
   selector: 'product-detail',
@@ -16,14 +17,22 @@ import { ProductService } from '../services/product.service';
 })
 export class ProductDetailComponent implements OnInit, OnDestroy {
 
-  product: Product;
-  pageType: string;
+  product:     Product;
+  pageType:    string;
   productForm: FormGroup;
+  steps:       Step[] = [
+    { title: 'Basic Info', content: '' },
+    { title: 'Pricing',    content: '' },
+    { title: 'Inventory',  content: '' },
+    { title: 'Shipping',   content: '' }
+  ];
+  totalSteps: number;
+  currentStep: number = 0;
   private _unsubscribeAll: Subject<any>;
 
   /**
    * Constructor
-   * @param {EcommerceProductService} productService
+   * @param {ProductService} productService
    * @param {FormBuilder} formBuilder
    * @param {Location} location
    * @param {MatSnackBar} matSnackBar
@@ -38,6 +47,7 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    this.totalSteps = this.steps.length;
     // Subscribe to update product on changes
     this.productService.onProductChanged.pipe(takeUntil(this._unsubscribeAll)).subscribe(product => {
 
@@ -69,7 +79,6 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
       handle          : [this.product.handle],
       description     : [this.product.description],
       categories      : [this.product.categories],
-      tags            : [this.product.tags],
       priceTaxExcl    : [this.product.priceTaxExcl],
       priceTaxIncl    : [this.product.priceTaxIncl],
       taxRate         : [this.product.taxRate],
@@ -118,7 +127,7 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
       });
 
       // Change the location with new one
-      this.location.go('apps/e-commerce/products/' + this.product.id + '/' + this.product.handle);
+      this.location.go('products/' + this.product.id + '/' + this.product.handle);
     });
   }
 

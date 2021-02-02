@@ -23,7 +23,7 @@ export class DynamicStepperComponent implements OnInit, OnChanges, OnDestroy, Af
   @Output() gotoNextStep     = new EventEmitter<void>();
   @Output() gotoPreviousStep = new EventEmitter<void>();
   @Output() gotoStep         = new EventEmitter<number>();
-  // @Output() confirmLastStep = new EventEmitter<void>();
+  @Output() confirmLastStep  = new EventEmitter<void>();
   totalSteps: number;
   animationDirection: 'left' | 'right' | 'none' = 'none';
   _unsubscribeAll = new Subject<boolean>();

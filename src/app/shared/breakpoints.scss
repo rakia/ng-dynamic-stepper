@@ -1,4 +1,3 @@
-// Media step breakpoint mixin based on Angular Material lib
 $breakpoints: (
     xs: 'screen and (max-width: 599px)',
     sm: 'screen and (min-width: 600px) and (max-width: 959px)',
@@ -15,7 +14,6 @@ $breakpoints: (
     gt-lg: 'screen and (min-width: 1920px)'
 ) !default;
 
-// Re-map the breakpoints for the helper classes
 $helper-breakpoints: (
     xs: null,
     sm: 'gt-xs',

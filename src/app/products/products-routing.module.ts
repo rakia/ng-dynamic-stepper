@@ -8,25 +8,19 @@ import { ProductService         } from './services/product.service';
 
 const routes: Routes = [
   {
-    path     : '',
+    path: '',
     component: ProductListComponent,
-    resolve  : {
-      data: ProductsService
-    }
+    resolve: { data: ProductsService }
   },
   {
-    path     : ':id',
+    path: ':id',
     component: ProductDetailComponent,
-    resolve  : {
-      data: ProductService
-    }
+    resolve: { data: ProductService }
   },
   {
-    path     : ':id/:handle',
+    path: ':id/:handle',
     component: ProductDetailComponent,
-    resolve  : {
-      data: ProductService
-    }
+    resolve: { data: ProductService }
   }
   /*{
     path: 'product-list',

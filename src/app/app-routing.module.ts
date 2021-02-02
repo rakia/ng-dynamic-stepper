@@ -5,8 +5,8 @@ import { ProductCreationComponent } from './products/product-creation/product-cr
 import { ProductListComponent     } from './products/product-list/product-list.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'create-products', pathMatch: 'full' },
-  { path: 'create-products',
+  { path: '', redirectTo: 'create-product', pathMatch: 'full' },
+  { path: 'create-product',
     component: ProductCreationComponent
   },
   { path: 'products',

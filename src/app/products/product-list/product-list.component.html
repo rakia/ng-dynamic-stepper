@@ -8,34 +8,18 @@
     <div class="center">
 
         <!-- HEADER -->
-        <div class="header accent"
-             fxLayout="column" fxLayoutAlign="center center"
-             fxLayout.gt-sm="row" fxLayoutAlign.gt-sm="space-between center">
+        <div class="header accent" fxLayout="row" fxLayoutAlign="space-between center">
 
             <!-- APP TITLE -->
-            <div class="logo mb-24 mb-md-0"
-                 fxLayout="row" fxLayoutAlign="start center">
-                <mat-icon class="logo-icon s-32 mr-16">
-                    shopping_basket
-                </mat-icon>
-                <span class="logo-text h1">
-                    Products
-                </span>
+            <div class="logo mb-24 mb-md-0" fxLayout="row" fxLayoutAlign="start center">
+                <mat-icon class="logo-icon s-32 mr-16">shopping_basket</mat-icon>
+                <span class="logo-text h1">Products</span>
             </div>
             <!-- / APP TITLE -->
 
-            <!-- SEARCH -->
-            <div class="search-wrapper mx-32 mx-md-0">
-                <div class="search" fxFlex fxLayout="row" fxLayoutAlign="start center">
-                    <mat-icon>search</mat-icon>
-                    <input #filter placeholder="Search for a product">
-                </div>
-            </div>
-            <!-- / SEARCH -->
-
             <!-- ADD BUTTON -->
-            <button mat-raised-button [routerLink]="'/apps/e-commerce/products/new'" class="add-product-button mt-24 mt-md-0">
-                <span>ADD NEW PRODUCT</span>
+            <button mat-raised-button [routerLink]="'create-product'" class="add-product-button mt-24 mt-md-0">
+                <span>Add New Product</span>
             </button>
             <!-- / ADD BUTTON -->
 
@@ -52,18 +36,6 @@
                     <mat-header-cell *matHeaderCellDef mat-sort-header>ID</mat-header-cell>
                     <mat-cell *matCellDef="let product">
                         <p class="text-truncate">{{product.id}}</p>
-                    </mat-cell>
-                </ng-container>
-
-                <!-- Image Column -->
-                <ng-container matColumnDef="image">
-                    <mat-header-cell *matHeaderCellDef></mat-header-cell>
-                    <mat-cell *matCellDef="let product">
-                        <img class="product-image"
-                             *ngIf="product.featuredImageId" [alt]="product.name"
-                             [src]="product.images[product.featuredImageId].url"/>
-                        <img *ngIf="!product.featuredImageId"
-                             [src]="'assets/images/ecommerce/product-image-placeholder.png'">
                     </mat-cell>
                 </ng-container>
 
@@ -124,13 +96,13 @@
                 <mat-row *matRowDef="let product; columns: displayedColumns;"
                          class="product"
                          matRipple
-                         [routerLink]="'/apps/e-commerce/products/'+product.id+'/'+product.handle">
+                         [routerLink]="'products/'+product.id+'/'+product.handle">
                 </mat-row>
 
             </mat-table>
 
             <mat-paginator #paginator
-                           [length]="dataSource.filteredData.length"
+                           [length]="dataSource.data.length"
                            [pageIndex]="0"
                            [pageSize]="10"
                            [pageSizeOptions]="[5, 10, 25, 100]">

@@ -1,12 +1,13 @@
-import { Component, ElementRef, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { DataSource } from '@angular/cdk/collections';
-import { BehaviorSubject, fromEvent, merge, Observable, Subject } from 'rxjs';
-import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
+import { merge, Observable, Subject } from 'rxjs';
+import { map } from 'rxjs/operators';
 
-import { takeUntil } from 'rxjs/operators';
 import { ProductsService } from '../services/products.service';
+import { Product  } from '../models/product.model';
+import { PRODUCTS } from '../../fake-db/products';
 
 @Component({
   selector     : 'product-list',
@@ -17,11 +18,10 @@ import { ProductsService } from '../services/products.service';
 export class ProductListComponent implements OnInit {
 
   dataSource: FilesDataSource | null;
-  displayedColumns = ['id', 'image', 'name', 'category', 'price', 'quantity', 'active'];
+  displayedColumns = ['id', 'name', 'category', 'price', 'quantity', 'active'];
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
-  @ViewChild('filter', {static: true}) filter: ElementRef;
 
   private _unsubscribeAll: Subject<any>;
 
@@ -31,30 +31,16 @@ export class ProductListComponent implements OnInit {
 
   ngOnInit(): void {
     this.dataSource = new FilesDataSource(this.productsService, this.paginator, this.sort);
-
-    fromEvent(this.filter.nativeElement, 'keyup')
-      .pipe(
-        takeUntil(this._unsubscribeAll),
-        debounceTime(150),
-        distinctUntilChanged()
-      )
-      .subscribe(() => {
-        if ( !this.dataSource ) {
-          return;
-        }
-        this.dataSource.filter = this.filter.nativeElement.value;
-      });
   }
 }
 
-export class FilesDataSource extends DataSource<any> {
+export class FilesDataSource extends DataSource<Product> {
 
-  private filterChange = new BehaviorSubject('');
-  private filteredDataChange = new BehaviorSubject('');
+  data: Product[] = [];
 
   /**
    * Constructor
-   * @param {EcommerceProductsService} productsService
+   * @param {ProductsService} productsService
    * @param {MatPaginator} matPaginator
    * @param {MatSort} matSort
    */
@@ -62,29 +48,27 @@ export class FilesDataSource extends DataSource<any> {
               private matPaginator: MatPaginator,
               private matSort: MatSort) {
     super();
-    this.filteredData = this.productsService.products;
+    this.data = PRODUCTS; // this.productsService.products;
+    debugger;
   }
 
   /**
    * Connect function called by the table to retrieve one stream containing the data to render.
    * @returns {Observable<any[]>}
    */
-  connect(): Observable<any[]> {
+  connect(): Observable<Product[]> {
     const displayDataChanges = [
       this.productsService.onProductsChanged,
       this.matPaginator.page,
-      this.filterChange,
+      // this.filterChange,
       this.matSort.sortChange
     ];
 
     return merge(...displayDataChanges).pipe(
       map(() => {
-          let data = this.productsService.products.slice();
-
-          data = this.filterData(data);
-
-          this.filteredData = [...data];
-
+          let data = PRODUCTS.slice(); // this.productsService.products.slice()
+          // data = this.filterData(data);
+          this.data = [...data];
           data = this.sortData(data);
 
           // Grab the page's slice of data.
@@ -92,38 +76,6 @@ export class FilesDataSource extends DataSource<any> {
           return data.splice(startIndex, this.matPaginator.pageSize);
         }
       ));
-  }
-
-  // ----------------------------------- Accessors
-
-  // Filtered data
-  get filteredData(): any {
-    return this.filteredDataChange.value;
-  }
-
-  set filteredData(value: any) {
-    this.filteredDataChange.next(value);
-  }
-
-  get filter(): string {
-    return this.filterChange.value;
-  }
-
-  set filter(filter: string) {
-    this.filterChange.next(filter);
-  }
-
-  /**
-   * Filter data
-   *
-   * @param data
-   * @returns {any}
-   */
-  filterData(data): any {
-    if (!this.filter) {
-      return data;
-    }
-    return this.filterArrayByString(data, this.filter);
   }
 
   /**
@@ -169,22 +121,4 @@ export class FilesDataSource extends DataSource<any> {
   }
 
   disconnect(): void {}
-
-  /**
-   * Filter array by string
-   * @param mainArr
-   * @param searchText
-   * @returns {any}
-   */
-  filterArrayByString(mainArr, searchText): any {
-    if (searchText === '') {
-      return mainArr;
-    }
-    searchText = searchText.toLowerCase();
-
-    /*return mainArr.filter(itemObj => {
-      return this.searchInObj(itemObj, searchText);
-    });*/
-    return mainArr;
-  }
 }

@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
 
 import { Step      } from '../../../../projects/dynamic-stepper/src/lib';
@@ -16,13 +17,10 @@ export class ProductCreationComponent implements OnInit, OnChanges, OnDestroy {
   @Input()  entity:      Order;
   @Input()  entityTypes: OrderType[];
   @Output() createEntity = new EventEmitter<Order>();
-  @Output() gotoInquiry  = new EventEmitter<Order>();
 
   steps: Step[] = [
-    {title: 'Draft',    content: ''},
-    {title: 'Saved',    content: ''},
-    {title: 'Complete', content: ''},
-    {title: 'Canceled', content: ''}
+    { title: 'Order Type',    content: '' },
+    { title: 'Order Details', content: '' }
   ];
   totalSteps: number;
   currentStep: number = 0;
@@ -39,7 +37,7 @@ export class ProductCreationComponent implements OnInit, OnChanges, OnDestroy {
   });
   _unsubscribeAll = new Subject<boolean>();
 
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(private formBuilder: FormBuilder, private router: Router) {}
 
   ngOnInit(): void {
     this.totalSteps = this.steps.length;
@@ -63,13 +61,16 @@ export class ProductCreationComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   goBack(): void {
-    this.gotoInquiry.emit(this.entity);
+    // Change the location with new one
+    this.router.navigate(['products']);
+  }
+
+  onGotoStep(step): void {
+    this.currentStep = step;
   }
 
   gotoNextStep(): void {
-    if (this.currentStep === 0) {
-      this.create();
-    }
+    this.currentStep++; // Increase the current step
   }
 
   gotoPreviousStep(): void {
