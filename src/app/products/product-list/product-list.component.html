@@ -6,18 +6,14 @@
     <!-- HEADER -->
     <mat-toolbar color="primary" class="header" fxLayout="row" fxLayoutAlign="space-between center">
 
-      <!-- APP TITLE -->
-      <div class="logo mb-24 mb-md-0" fxLayout="row" fxLayoutAlign="start center">
+      <div fxLayout="row" fxLayoutAlign="start center">
         <mat-icon class="logo-icon s-32 mr-16">shopping_basket</mat-icon>
         <span class="logo-text h1">Products</span>
       </div>
-      <!-- / APP TITLE -->
 
-      <!-- ADD BUTTON -->
-      <button mat-raised-button [routerLink]="'create-product'" class="add-product-button mt-24 mt-md-0">
-        <span>Add New Product</span>
+      <button mat-raised-button (click)="goToCreateOrder()" class="mt-24 mt-md-0">
+        <span>Create Order</span>
       </button>
-      <!-- / ADD BUTTON -->
 
     </mat-toolbar>
     <!-- / HEADER -->
@@ -90,7 +86,7 @@
         <mat-row *matRowDef="let product; columns: displayedColumns;"
                  class="product"
                  matRipple
-                 (click)="goToProductDetail(product.id, product.handle)">
+                 (click)="goToProductDetail(product.id)">
         </mat-row>
 
       </mat-table>

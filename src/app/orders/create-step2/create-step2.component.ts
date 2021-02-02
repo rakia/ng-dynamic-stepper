@@ -1,9 +1,9 @@
-import { Component, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges } from '@angular/core';
+import { Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Subject } from 'rxjs';
 
 import { OrderType } from '../models/order-type.model';
-import {Order} from '../models/order.model';
+import { Order     } from '../models/order.model';
 
 @Component({
     selector: 'create-step2',
@@ -12,9 +12,9 @@ import {Order} from '../models/order.model';
 })
 export class CreateStep2Component implements OnInit, OnChanges, OnDestroy {
 
-  @Input()  form:         FormGroup;
-  @Input()  entity:       Order;
-  @Input()  entityTypes:  OrderType[];
+  @Input()  form:        FormGroup;
+  @Input()  entity:      Order;
+  @Input()  entityTypes: OrderType[];
 
   _unsubscribeAll = new Subject<boolean>();
 

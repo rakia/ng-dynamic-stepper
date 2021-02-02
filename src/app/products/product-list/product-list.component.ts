@@ -34,9 +34,13 @@ export class ProductListComponent implements OnInit {
     this.dataSource = new FilesDataSource(this.productsService, this.paginator, this.sort);
   }
 
-  goToProductDetail(productId: string, productHandle: string): void {
+  goToProductDetail(productId: string): void {
     // Change the location with new one
-    this.router.navigate(['products/' + productId]); //  + '/' + productHandle
+    this.router.navigate(['products/' + productId]);
+  }
+
+  goToCreateOrder(): void {
+    this.router.navigate(['orders/new']);
   }
 }
 
@@ -44,15 +48,7 @@ export class FilesDataSource extends DataSource<Product> {
 
   data: Product[] = [];
 
-  /**
-   * Constructor
-   * @param {ProductsService} productsService
-   * @param {MatPaginator} matPaginator
-   * @param {MatSort} matSort
-   */
-  constructor(private productsService: ProductsService,
-              private matPaginator: MatPaginator,
-              private matSort: MatSort) {
+  constructor(private productsService: ProductsService, private matPaginator: MatPaginator, private matSort: MatSort) {
     super();
     this.data = PRODUCTS; // this.productsService.products;
   }
@@ -83,11 +79,6 @@ export class FilesDataSource extends DataSource<Product> {
       ));
   }
 
-  /**
-   * Sort data
-   * @param data
-   * @returns {any[]}
-   */
   sortData(data): any[] {
     if ( !this.matSort.active || this.matSort.direction === '' ) {
       return data;

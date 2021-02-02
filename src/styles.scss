@@ -15,3 +15,23 @@
 .mb-24 { margin-bottom: 24px; }
 .p-16  { padding: 16px; }
 .pr-8  { padding-right: 8px; }
+
+.w-100-p {
+  width: 100%!important;
+}
+
+mat-icon.s-32 {
+  font-size: 32px!important;
+  width: 32px!important;
+  height: 32px!important;
+  min-width: 32px!important;
+  min-height: 32px!important;
+  line-height: 32px!important;
+}
+
+.h1, h1 {
+  font-size: 24px;
+}
+.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
+  font-weight: 400;
+}

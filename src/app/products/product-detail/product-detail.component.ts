@@ -17,9 +17,8 @@ import { Step           } from '../../../../projects/dynamic-stepper/src/lib';
 })
 export class ProductDetailComponent implements OnInit, OnDestroy {
 
-  product:     Product;
-  pageType:    string;
   productForm: FormGroup;
+  product:     Product;
   steps:       Step[] = [
     { title: 'Basic Info', content: '' },
     { title: 'Pricing',    content: '' },
@@ -37,9 +36,10 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
               private matSnackBar: MatSnackBar) {}
 
   ngOnInit(): void {
-    const productId = this.activatedRoute.snapshot.paramMap.get('id');
-    if (productId !== 'create-product') {
-      this.product = PRODUCTS.filter(product => product.id === productId)[0];
+    const productId = Number(this.activatedRoute.snapshot.paramMap.get('id'));
+    const filtered  = PRODUCTS.filter(product => product.id === productId);
+    if (filtered && filtered.length) {
+      this.product = filtered[0];
     } else {
       this.product = new Product();
     }
@@ -51,7 +51,6 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
     return this.formBuilder.group({
       id              : [this.product.id],
       name            : [this.product.name],
-      handle          : [this.product.handle],
       description     : [this.product.description],
       categories      : [this.product.categories],
       priceTaxExcl    : [this.product.priceTaxExcl],
@@ -71,7 +70,6 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
 
   saveProduct(): void {
     const data = this.productForm.getRawValue();
-    data.handle = data.name;
 
     this.productService.saveProduct(data).then(() => {
       this.productService.onProductChanged.next(data); // Trigger the subscription with new data

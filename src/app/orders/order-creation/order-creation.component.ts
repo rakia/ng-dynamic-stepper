@@ -8,11 +8,11 @@ import { Order     } from '../models/order.model';
 import { OrderType } from '../models/order-type.model';
 
 @Component({
-    selector: 'order',
-    templateUrl: './product-creation.component.html',
-    styleUrls: ['./product-creation.component.scss']
+  selector: 'order',
+  templateUrl: './order-creation.component.html',
+  styleUrls: ['./order-creation.component.scss']
 })
-export class ProductCreationComponent implements OnInit, OnChanges, OnDestroy {
+export class OrderCreationComponent implements OnInit, OnChanges, OnDestroy {
 
   @Input()  entity:      Order;
   @Input()  entityTypes: OrderType[];

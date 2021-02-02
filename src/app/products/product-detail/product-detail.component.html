@@ -22,7 +22,7 @@
             <div stepsHeader>
               <button mat-raised-button class="save-product-button"
                       [disabled]="productForm.invalid || productForm.pristine"
-                      *ngIf="pageType ==='edit'" (click)="saveProduct()">
+                      (click)="saveProduct()">
                 <span>SAVE</span>
               </button>
             </div>
@@ -84,8 +84,6 @@
                     <mat-label>Compared Price</mat-label>
                     <input matInput placeholder="Compared Price" name="comparedPrice" formControlName="comparedPrice" type="number">
                     <span matPrefix>$&nbsp;</span>
-                    <mat-hint align="start">Add a compare price to show next to the real price
-                    </mat-hint>
                   </mat-form-field>
 
                 </div>
