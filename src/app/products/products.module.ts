@@ -1,4 +1,5 @@
 import { NgModule                } from '@angular/core';
+import { RouterModule            } from '@angular/router';
 import { BrowserModule           } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FlexLayoutModule        } from '@angular/flex-layout';
@@ -13,7 +14,6 @@ import { CreateStep1Component     } from './create-step1/create-step1.component'
 import { CreateStep2Component     } from './create-step2/create-step2.component';
 import { ProductsService          } from './services/products.service';
 import { ProductService           } from './services/product.service';
-import { ProductsRoutingModule    } from './products-routing.module';
 
 @NgModule({
   declarations: [
@@ -29,8 +29,8 @@ import { ProductsRoutingModule    } from './products-routing.module';
     AngularMaterialModule,
     FlexLayoutModule,
     HttpClientModule,
-    ProductsRoutingModule,
-    DynamicStepperModule
+    DynamicStepperModule,
+    RouterModule
   ],
   providers: [
     ProductsService,

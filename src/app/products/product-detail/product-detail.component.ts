@@ -63,16 +63,7 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
     });
   }
 
-  // -----------------------------------------------------------------------------------------------------
-  // @ Public methods
-  // -----------------------------------------------------------------------------------------------------
-
-  /**
-   * Create product form
-   * @returns {FormGroup}
-   */
-  createProductForm(): FormGroup
-  {
+  createProductForm(): FormGroup  {
     return this.formBuilder.group({
       id              : [this.product.id],
       name            : [this.product.name],

@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import { Router } from '@angular/router';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { DataSource } from '@angular/cdk/collections';
@@ -25,12 +26,17 @@ export class ProductListComponent implements OnInit {
 
   private _unsubscribeAll: Subject<any>;
 
-  constructor(private productsService: ProductsService) {
+  constructor(private productsService: ProductsService, private router: Router) {
     this._unsubscribeAll = new Subject();
   }
 
   ngOnInit(): void {
     this.dataSource = new FilesDataSource(this.productsService, this.paginator, this.sort);
+  }
+
+  goToProductDetail(productId: string, productHandle: string): void {
+    // Change the location with new one
+    this.router.navigate(['products/' + productId]); //  + '/' + productHandle
   }
 }
 
@@ -49,7 +55,6 @@ export class FilesDataSource extends DataSource<Product> {
               private matSort: MatSort) {
     super();
     this.data = PRODUCTS; // this.productsService.products;
-    debugger;
   }
 
   /**
