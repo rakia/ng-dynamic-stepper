@@ -1,4 +1,4 @@
-<div id="create-stepper" class="page-layout simple fullwidth">
+<div id="create-stepper">
 
     <!-- CENTER -->
     <div class="center">
@@ -9,7 +9,7 @@
                       [showGoBack]="showGoBack"
                       (gotoStep)="onGotoStep($event)"
                       (goBack)="goBack.emit()">
-          <ng-container *ngTemplateOutlet="stepsHeaderContent"></ng-container>
+          <ng-container *ngTemplateOutlet="stepsHeader"></ng-container>
         </steps-header>
         <!-- / STEPS HEADER -->
 
@@ -19,13 +19,8 @@
           <div fxFlex fxLayout="row" fxLayoutAlign="center center" class="step">
 
             <div class="step-content">
-              <ng-content></ng-content>
+              <ng-container *ngTemplateOutlet="stepsContent"></ng-container>
             </div>
-            <!--ng-template ngFor let-step [ngForOf]="steps"></ng-template>
-            <ng-template #update let-mode="mode" let-entity="entity">
-              <ng-content select="[update]"></ng-content>
-            </ng-template>
-            <div *ngFor="let step of steps" class="step-content" [innerHTML]="step.content"></div-->
           </div>
         </div>
         <!-- / CONTENT: STEPS HTML -->
@@ -58,3 +53,11 @@
     <!-- / CENTER -->
 
 </div>
+
+<ng-template #stepsHeader>
+  <ng-content select="[stepsHeader]"></ng-content>
+</ng-template>
+
+<ng-template #stepsContent>
+  <ng-content select="[stepsContent]"></ng-content>
+</ng-template>

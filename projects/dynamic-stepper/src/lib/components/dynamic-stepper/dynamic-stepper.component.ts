@@ -28,7 +28,8 @@ export class DynamicStepperComponent implements OnInit, OnChanges, OnDestroy, Af
   animationDirection: 'left' | 'right' | 'none' = 'none';
   _unsubscribeAll = new Subject<boolean>();
 
-  @ContentChild('stepsHeaderContent', { read: TemplateRef }) stepsHeaderContent: TemplateRef<any>;
+  @ContentChild('stepsHeader',  { read: TemplateRef }) stepsHeader:  TemplateRef<any>;
+  @ContentChild('stepsContent', { read: TemplateRef }) stepsContent: TemplateRef<any>;
 
   constructor(private _changeDetectorRef: ChangeDetectorRef) {}
 

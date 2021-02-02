@@ -1,13 +1,13 @@
 import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { Location } from '@angular/common';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
 
 import { Product        } from '../models/product.model';
 import { ProductService } from '../services/product.service';
 import { Step           } from '../../../../projects/dynamic-stepper/src/lib';
+import { PRODUCTS       } from '../../fake-db/products';
 
 @Component({
   selector: 'product-detail',
@@ -28,39 +28,23 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
   ];
   totalSteps: number;
   currentStep: number = 0;
-  private _unsubscribeAll: Subject<any>;
+  private _unsubscribeAll = new Subject<boolean>();
 
-  /**
-   * Constructor
-   * @param {ProductService} productService
-   * @param {FormBuilder} formBuilder
-   * @param {Location} location
-   * @param {MatSnackBar} matSnackBar
-   */
   constructor(private productService: ProductService,
               private formBuilder: FormBuilder,
-              private location: Location,
-              private matSnackBar: MatSnackBar) {
-
-    this.product = new Product();
-    this._unsubscribeAll = new Subject();
-  }
+              private activatedRoute: ActivatedRoute,
+              private router: Router,
+              private matSnackBar: MatSnackBar) {}
 
   ngOnInit(): void {
+    const productId = this.activatedRoute.snapshot.paramMap.get('id');
+    if (productId !== 'create-product') {
+      this.product = PRODUCTS.filter(product => product.id === productId)[0];
+    } else {
+      this.product = new Product();
+    }
+    this.productForm = this.createProductForm();
     this.totalSteps = this.steps.length;
-    // Subscribe to update product on changes
-    this.productService.onProductChanged.pipe(takeUntil(this._unsubscribeAll)).subscribe(product => {
-
-      if ( product ) {
-        this.product = new Product(product);
-        this.pageType = 'edit';
-      } else {
-        this.pageType = 'new';
-        this.product = new Product();
-      }
-
-      this.productForm = this.createProductForm();
-    });
   }
 
   createProductForm(): FormGroup  {
@@ -90,40 +74,30 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
     data.handle = data.name;
 
     this.productService.saveProduct(data).then(() => {
-
-      // Trigger the subscription with new data
-      this.productService.onProductChanged.next(data);
-
-      // Show the success message
-      this.matSnackBar.open('Product saved', 'OK', {
-        verticalPosition: 'top',
-        duration        : 2000
-      });
+      this.productService.onProductChanged.next(data); // Trigger the subscription with new data
+      this.matSnackBar.open('Product saved', 'OK', {verticalPosition: 'top', duration: 2000});
     });
   }
 
-  addProduct(): void {
-    const data = this.productForm.getRawValue();
-    data.handle = data.name;
+  goBack(): void {
+    // Change the location with new one
+    this.router.navigate(['products']);
+  }
 
-    this.productService.addProduct(data).then(() => {
+  onGotoStep(step): void {
+    this.currentStep = step;
+  }
 
-      // Trigger the subscription with new data
-      this.productService.onProductChanged.next(data);
+  gotoNextStep(): void {
+    this.currentStep++; // Increase the current step
+  }
 
-      // Show the success message
-      this.matSnackBar.open('Product added', 'OK', {
-        verticalPosition: 'top',
-        duration        : 2000
-      });
-
-      // Change the location with new one
-      this.location.go('products/' + this.product.id + '/' + this.product.handle);
-    });
+  gotoPreviousStep(): void {
+    this.currentStep--; // Decrease the current step
   }
 
   ngOnDestroy(): void {
-    this._unsubscribeAll.next();
-    this._unsubscribeAll.complete();
+    this._unsubscribeAll.next(true);
+    this._unsubscribeAll.unsubscribe();
   }
 }

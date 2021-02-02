@@ -6,6 +6,7 @@
                      (gotoNextStep)="gotoNextStep()"
                      (gotoPreviousStep)="gotoPreviousStep()">
 
+  <div stepsContent>
     <!-- STEP 1 -->
     <div *ngIf="currentStep === 0">
       <create-step1 [formStep1]="formStep1" [entityTypes]="entityTypes"></create-step1>
@@ -20,5 +21,6 @@
       </create-step2>
     </div>
     <!-- / STEP 2 -->
+  </div>
 
 </lib-dynamic-stepper>
