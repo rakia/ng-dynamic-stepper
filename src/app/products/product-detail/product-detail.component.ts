@@ -4,10 +4,10 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Subject } from 'rxjs';
 
+import { PRODUCTS       } from '../../fake-db/products';
 import { Product        } from '../models/product.model';
 import { ProductService } from '../services/product.service';
 import { Step           } from '../../../../projects/dynamic-stepper/src/lib';
-import { PRODUCTS       } from '../../fake-db/products';
 
 @Component({
   selector: 'product-detail',
