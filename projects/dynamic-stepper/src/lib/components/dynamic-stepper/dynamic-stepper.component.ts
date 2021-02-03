@@ -47,19 +47,12 @@ export class DynamicStepperComponent implements OnInit, OnChanges, OnDestroy, Af
 
   onGotoStep(step): void {
     this.animationDirection = this.currentStep < step ? 'left' : 'right'; // Decide the animation direction
-    // this._changeDetectorRef.detectChanges(); // Run change detection so the change in the animation direction registered
-    // this.currentStep = step; // Set the current step
     this.gotoStep.emit(step);
   }
 
   onGotoNextStep(): void {
-    /*if ( this.currentStep === this.totalSteps - 1 ) {
-      return;
-    }*/
     this.animationDirection = 'left'; // Set the animation direction
     this.gotoNextStep.emit();
-    // this._changeDetectorRef.detectChanges(); // Run change detection so the change in the animation direction registered
-    // this.currentStep++; // Increase the current step
   }
 
   onGotoPreviousStep(): void {
@@ -68,8 +61,6 @@ export class DynamicStepperComponent implements OnInit, OnChanges, OnDestroy, Af
     }
     this.animationDirection = 'right'; // Set the animation direction
     this.gotoPreviousStep.emit();
-    // this._changeDetectorRef.detectChanges(); // Run change detection so the change in the animation direction registered
-    // this.currentStep--; // Decrease the current step
   }
 
   ngOnDestroy(): void {

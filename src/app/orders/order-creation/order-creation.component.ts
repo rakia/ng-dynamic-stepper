@@ -25,7 +25,7 @@ export class OrderCreationComponent implements OnInit, OnChanges, OnDestroy {
   totalSteps: number;
   currentStep: number = 0;
 
-  formStep1 = this.formBuilder.group({
+  form = this.formBuilder.group({
     entityType: [null, Validators.required],
     Tarih:      [new Date(), Validators.required],
     Belgeno:    [''],
@@ -47,10 +47,10 @@ export class OrderCreationComponent implements OnInit, OnChanges, OnDestroy {
   ngOnChanges(changes: SimpleChanges): void {}
 
   create(): void {
-    if (this.formStep1.invalid) {
+    if (this.form.invalid) {
       return;
     }
-    this.patchEntity(this.formStep1.getRawValue());
+    this.patchEntity(this.form.getRawValue());
     this.createEntity.emit(this.entity);
   }
 

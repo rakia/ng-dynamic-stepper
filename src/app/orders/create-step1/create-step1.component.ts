@@ -10,7 +10,7 @@ import { OrderType } from '../models/order-type.model';
 })
 export class CreateStep1Component implements OnInit {
 
-  @Input() formStep1: FormGroup;
+  @Input() form: FormGroup;
   @Input() entityTypes: OrderType[];
 
   constructor() {}

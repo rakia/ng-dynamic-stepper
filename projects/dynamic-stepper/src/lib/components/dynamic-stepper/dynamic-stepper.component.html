@@ -9,45 +9,37 @@
                       [showGoBack]="showGoBack"
                       (gotoStep)="onGotoStep($event)"
                       (goBack)="goBack.emit()">
+
           <ng-container *ngTemplateOutlet="stepsHeader"></ng-container>
         </steps-header>
         <!-- / STEPS HEADER -->
 
-        <!-- CONTENT: STEPS HTML -->
+        <!-- STEPS CONTENT -->
         <div class="content">
 
           <div fxFlex fxLayout="row" fxLayoutAlign="center center" class="step">
-
             <div class="step-content">
               <ng-container *ngTemplateOutlet="stepsContent"></ng-container>
             </div>
           </div>
         </div>
-        <!-- / CONTENT: STEPS HTML -->
+        <!-- / STEPS CONTENT -->
 
-        <!-- NEXT - PREVIOUS BUTTONS -->
+        <!-- NEXT & PREVIOUS BUTTONS -->
         <div class="step-navigation">
-            <button mat-fab class="previous mat-accent"
-                    (click)="onGotoPreviousStep()"
-                    [disabled]="currentStep === 0"
-                    [fxHide]="currentStep === 0">
+            <button mat-fab class="previous mat-accent" (click)="onGotoPreviousStep()" [fxHide]="currentStep === 0">
                 <mat-icon>chevron_left</mat-icon>
             </button>
 
-            <button mat-fab class="next mat-accent"
-                    (click)="onGotoNextStep()"
-                    [fxHide]="currentStep === totalSteps - 1">
+            <button mat-fab class="next mat-accent" (click)="onGotoNextStep()" [fxHide]="currentStep === totalSteps - 1">
                 <mat-icon>chevron_right</mat-icon>
             </button>
 
-            <button mat-fab
-                    (click)="confirmLastStep.emit()"
-                    [disabled]="currentStep !== totalSteps - 1"
-                    [fxShow]="currentStep === totalSteps - 1">
+            <button mat-fab (click)="confirmLastStep.emit()" [fxShow]="currentStep === totalSteps - 1">
                 <mat-icon>check</mat-icon>
             </button>
         </div>
-        <!-- / NEXT - PREVIOUS BUTTONS -->
+        <!-- / NEXT & PREVIOUS BUTTONS -->
 
     </div>
     <!-- / CENTER -->
