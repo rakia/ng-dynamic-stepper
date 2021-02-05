@@ -25,7 +25,6 @@ export class DynamicStepperComponent implements OnInit, OnChanges, OnDestroy, Af
   @Output() gotoStep         = new EventEmitter<number>();
   @Output() confirmLastStep  = new EventEmitter<void>();
   totalSteps: number;
-  animationDirection: 'left' | 'right' | 'none' = 'none';
   _unsubscribeAll = new Subject<boolean>();
 
   @ContentChild('stepsHeader',  { read: TemplateRef }) stepsHeader:  TemplateRef<any>;
@@ -46,12 +45,10 @@ export class DynamicStepperComponent implements OnInit, OnChanges, OnDestroy, Af
   ngAfterViewInit(): void {}
 
   onGotoStep(step): void {
-    this.animationDirection = this.currentStep < step ? 'left' : 'right'; // Decide the animation direction
     this.gotoStep.emit(step);
   }
 
   onGotoNextStep(): void {
-    this.animationDirection = 'left'; // Set the animation direction
     this.gotoNextStep.emit();
   }
 
@@ -59,7 +56,6 @@ export class DynamicStepperComponent implements OnInit, OnChanges, OnDestroy, Af
     if ( this.currentStep === 0 ) {
       return;
     }
-    this.animationDirection = 'right'; // Set the animation direction
     this.gotoPreviousStep.emit();
   }
 
