@@ -15,8 +15,9 @@ import { MatTableDataSource      } from '@angular/material/table';
 import { Validators, FormControl } from '@angular/forms';
 import { MatSort                 } from '@angular/material/sort';
 import { Subject                 } from 'rxjs';
+import { debounceTime, distinctUntilChanged, takeUntil } from 'rxjs/operators';
 
-import { OptionSearchConfig      } from '../../models/option-search-config.model';
+import { OptionSearchConfig } from '../../models/option-search-config.model';
 
 /**
  * Author: Rakia Ben Sassi
@@ -54,15 +55,14 @@ export class OptionSearchOverlayComponent<T> implements OnInit, OnChanges, OnDes
 
   ngOnInit(): void {
     this.dataSource.sort = this.sort;
-
     if (!this.currentOption) {
       this.initCurrentOption();
     }
-
     if (this.required) {
       this.valueFormControl.setValidators([Validators.required]);
       this.valueFormControl.updateValueAndValidity();
     }
+    this.onSearchQueryChanged();
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -72,7 +72,6 @@ export class OptionSearchOverlayComponent<T> implements OnInit, OnChanges, OnDes
       this.dataSource.filteredData = this.optionsList;
       this.highlightRowIndex = -1;
     }
-
     if (changes.optionSearchConfig && changes.optionSearchConfig.currentValue) {
       if (this.optionSearchConfig.displayColumnDefs && !this.optionSearchConfig.displayedColumns) {
         this.optionSearchConfig.displayedColumns = this.optionSearchConfig.displayColumnDefs.map(col => col.key);
@@ -84,6 +83,19 @@ export class OptionSearchOverlayComponent<T> implements OnInit, OnChanges, OnDes
     }
   }
 
+  onSearchQueryChanged(): void {
+    this.valueFormControl.valueChanges
+      .pipe(
+          takeUntil(this._unsubscribeAll),
+          debounceTime(150), // debounce searchQueries & dismiss consecutive duplicates
+          distinctUntilChanged())
+      .subscribe(searchQuery => this.applyFilter(searchQuery) );
+  }
+
+  applyFilter(filterQuery: string): void {
+    this.dataSource.filter = filterQuery.toLowerCase();
+  }
+
   initCurrentOption(): void {
     this.currentOption = {};
     this.currentOption[this.valueField] = this.valueFormControl.value;
@@ -91,10 +103,6 @@ export class OptionSearchOverlayComponent<T> implements OnInit, OnChanges, OnDes
 
   updateForm(currentOption: T): void {
     this.valueFormControl.setValue( currentOption[this.valueField] );
-  }
-
-  applyFilter(filterQuery: string) {
-    this.dataSource.filter = filterQuery.toLowerCase();
   }
 
   checkValue(): void {
