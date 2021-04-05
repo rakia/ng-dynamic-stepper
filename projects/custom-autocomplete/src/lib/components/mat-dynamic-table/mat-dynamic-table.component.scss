@@ -56,11 +56,6 @@ $table-row-height: 35px;
       background-color: #f9f9f9;
     }
   }
-
-  /* TODO: this is needed if row-height=30px, but it's not working yet
-  .mat-form-field-appearance-legacy .mat-form-field-wrapper {
-     padding-bottom: 0.9em !important;
-  }*/
 }
 
 .table-container.space-bottom {
@@ -72,4 +67,8 @@ $table-row-height: 35px;
   cursor: pointer;
   overflow: auto;
   border: 1px rgba(0, 0, 120, 0.5) solid;
+}
+
+.highlighted {
+  background-color: #e7cccc;
 }

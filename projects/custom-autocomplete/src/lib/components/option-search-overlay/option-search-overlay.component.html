@@ -22,7 +22,7 @@
 
   <div fxLayout="column" class="overlay-content" (clickOutside)="closeOverlay()">
 
-    <mat-dynamic-table [dataList]="dataSource"
+    <mat-dynamic-table [dataList]="dataSource.filteredData"
                        [displayedColumns]="optionSearchConfig.displayedColumns"
                        [displayColumnDefs]="optionSearchConfig.displayColumnDefs"
                        [highlightRowIndex]="highlightRowIndex"

@@ -136,8 +136,8 @@ export class OptionSearchOverlayComponent<T> implements OnInit, OnChanges, OnDes
   onArrowDown(event: KeyboardEvent): void {
 
     if (this.overlayHasFocus && this.highlightRowIndex < (this.dataSource.filteredData.length - 1)) { // data
-      // console.log('--Overlay has Focus --> increase highlightRowIndex');
-      this.highlightRowIndex += 1;
+     this.highlightRowIndex += 1;
+     // console.log('--Overlay has Focus --> increase highlightRowIndex ' + this.highlightRowIndex);
     }
   }
 
@@ -150,6 +150,7 @@ export class OptionSearchOverlayComponent<T> implements OnInit, OnChanges, OnDes
 
     if (this.overlayHasFocus && this.highlightRowIndex > 0) {
       this.highlightRowIndex -= 1;
+      // console.log('--highlightRowIndex = ' + this.highlightRowIndex);
     }
   }
 
@@ -207,11 +208,13 @@ export class OptionSearchOverlayComponent<T> implements OnInit, OnChanges, OnDes
   openOverlay(): void {
     this.isOverlayOpen      = true;
     this.highlightRowIndex  = -1;
+    // console.log('--highlightRowIndex = ' + this.highlightRowIndex);
   }
 
   closeOverlay(): void {
     this.isOverlayOpen      = false;
     this.highlightRowIndex  = -1;
+    // console.log('--highlightRowIndex = ' + this.highlightRowIndex);
   }
 
   ngOnDestroy(): void {
