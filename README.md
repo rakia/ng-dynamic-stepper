@@ -1,4 +1,16 @@
-# NgDynamicStepperApp
+
+The article describing this project is available here: https://medium.com/better-programming/angular-library-dynamic-stepper-2ba05ab40228
+
+# Build a Reusable Stepper as an Angular Library
+## Convey your process’s progress with a dynamic stepper
+
+Flight booking, managing an invoice in SAP, creating a purchase order — what all of these processes have in common is the fact that they involve many steps to finish them. A purchase order, for example, consists of several compliance checkpoints, approval, and input tasks to ensure timely processing.
+
+If you got the chance to build an enterprise application that handles similar processes, this means that multiple modules in your app should include the same user interface logic and you have to solve the same problem in many places.
+
+You got it! You need to implement a customizable reusable component that conveys the process’s progress and allows the data submission step by step, and that’s what we’ll do here: https://medium.com/better-programming/angular-library-dynamic-stepper-2ba05ab40228
+
+# Angular Library: A Dynamic Stepper
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.2.0.
 
