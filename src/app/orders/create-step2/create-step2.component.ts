@@ -12,10 +12,9 @@ import { Order     } from '../models/order.model';
 })
 export class CreateStep2Component implements OnInit, OnChanges, OnDestroy {
 
-  @Input()  form:        FormGroup;
-  @Input()  entity:      Order;
-  @Input()  entityTypes: OrderType[];
-
+  @Input() form:       FormGroup;
+  @Input() entity:     Order;
+  @Input() orderTypes: OrderType[];
   _unsubscribeAll = new Subject<boolean>();
 
   constructor() {}

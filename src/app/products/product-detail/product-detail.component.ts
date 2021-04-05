@@ -1,8 +1,8 @@
 import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { Subject } from 'rxjs';
+import { FormBuilder, FormGroup                          } from '@angular/forms';
+import { ActivatedRoute, Router                          } from '@angular/router';
+import { MatSnackBar                                     } from '@angular/material/snack-bar';
+import { Subject                                         } from 'rxjs';
 
 import { PRODUCTS       } from '../../fake-db/products';
 import { Product        } from '../models/product.model';

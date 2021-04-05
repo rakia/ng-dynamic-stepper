@@ -1,11 +1,22 @@
-<form [formGroup]="form" class="mb-8 mt-24 mb-24" fxLayout="row wrap">
+<form [formGroup]="form" class="mt-24 mb-24" fxLayout="column wrap">
 
   <mat-form-field fxFlex>
     <mat-label>Order Type</mat-label>
-    <mat-select formControlName="entityType">
+    <mat-select formControlName="orderType">
       <mat-option value=""></mat-option>
-      <mat-option *ngFor="let entityType of entityTypes" [value]="entityType.value">{{entityType.label}}</mat-option>
+      <mat-option *ngFor="let orderType of orderTypes" [value]="orderType.value">{{ orderType.label }}</mat-option>
     </mat-select>
   </mat-form-field>
+
+  <option-search-overlay [valueField]="'name'"
+                         [valueFormControl]="form.get('product')"
+                         [required]="true"
+                         [searchQuery]="''"
+                         [searchLabel]="'Add a product'"
+                         [optionSearchConfig]="optionSearchConfig"
+                         [optionsList]="products"
+                         (optionSelected)="onOptionSelectedFromOverlay($event)">
+  </option-search-overlay>
+  <!--  products$ | async    [disable]="false"    [currentOption]="currentOption" -->
 
 </form>

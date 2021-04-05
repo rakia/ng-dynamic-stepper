@@ -1,19 +1,20 @@
 import { Product } from '../../products/models/product.model';
 
 export interface Order {
-  id:          number;
-  reference:   string;
-  subtotal:    number;
-  tax:         number;
-  discount:    number;
-  total:       number;
-  date:        Date;
-  customer:    Customer;
+  id:           number;
+  reference:    string;
+  subtotal:     number;
+  tax:          number;
+  discount:     number;
+  total:        number;
+  date:         Date;
+  customer:     Customer;
   checked?:     boolean;
   description?: string;
-  products:    Product[];
-  status:      Status[];
-  payment:     Payment;
+  product?:     Product;
+  products:     Product[];
+  status:       Status[];
+  payment:      Payment;
   shippingDetails: ShippingDetail[];
 }
 

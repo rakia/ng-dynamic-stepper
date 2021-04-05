@@ -9,15 +9,15 @@
   <div stepsContent>
     <!-- STEP 1 -->
     <div *ngIf="currentStep === 0">
-      <create-step1 [form]="form" [entityTypes]="entityTypes"></create-step1>
+      <create-step1 [form]="form" [orderTypes]="orderTypes"></create-step1>
     </div>
     <!-- / STEP 1 -->
 
     <!-- STEP 2 -->
     <div *ngIf="currentStep === 1">
       <create-step2 [form]="form"
-                    [entity]="entity"
-                    [entityTypes]="entityTypes">
+                    [entity]="order"
+                    [orderTypes]="orderTypes">
       </create-step2>
     </div>
     <!-- / STEP 2 -->

@@ -16,6 +16,10 @@
       "dom"
     ],
     "paths": {
+      "custom-autocomplete": [
+        "dist/custom-autocomplete/custom-autocomplete",
+        "dist/custom-autocomplete"
+      ],
       "dynamic-stepper": [
         "dist/dynamic-stepper/dynamic-stepper",
         "dist/dynamic-stepper"

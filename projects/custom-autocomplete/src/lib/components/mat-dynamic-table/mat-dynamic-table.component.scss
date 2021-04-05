@@ -1,0 +1,75 @@
+$dark-grey: #4A4A4A;
+$table-row-height: 35px;
+
+.table-container {
+
+  .mat-table {
+    overflow: auto;
+    width: 100%;
+
+    th.mat-header-cell, td.mat-cell {
+      border-left: 1px rgba(0, 0, 0, 0.12) solid;
+      padding: 0 8px !important;
+    }
+  }
+
+  tr.mat-footer-row {
+    font-weight: bold;
+  }
+
+  th.mat-sort-header-sorted {
+    color: black;
+  }
+
+  tr.mat-row, tr.mat-footer-row, .mat-form-field {
+    height: $table-row-height;
+    min-height: $table-row-height;
+  }
+
+  .mat-form-field {
+    width: 100%;
+  }
+
+  tr.mat-row:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+
+  tr.mat-header-row.small-header {
+    height: 32px !important;
+    min-height: 32px !important;
+  }
+
+  td.mat-column-edit, td.mat-column-delete {
+    width: 50px;
+    padding-right: 30px;
+  }
+  .action-button {
+    background-color: white;
+    color: $dark-grey;
+    box-shadow: none;
+    &:hover {
+      color: #885656;
+    }
+  }
+  tr.mat-row:nth-child(even) {
+    .action-button {
+      background-color: #f9f9f9;
+    }
+  }
+
+  /* TODO: this is needed if row-height=30px, but it's not working yet
+  .mat-form-field-appearance-legacy .mat-form-field-wrapper {
+     padding-bottom: 0.9em !important;
+  }*/
+}
+
+.table-container.space-bottom {
+  margin-bottom: 20px;
+}
+
+.table-container.small-table {
+  max-height: 300px;
+  cursor: pointer;
+  overflow: auto;
+  border: 1px rgba(0, 0, 120, 0.5) solid;
+}

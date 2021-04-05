@@ -2,26 +2,26 @@
 
   <mat-form-field fxFlex>
     <mat-label>Order Type</mat-label>
-    <mat-select formControlName="entityType">
-      <mat-option *ngFor="let entityType of entityTypes" [value]="entityType.value">{{entityType.label}}</mat-option>
+    <mat-select formControlName="orderType">
+      <mat-option *ngFor="let orderType of orderTypes" [value]="orderType.value">{{ orderType.label }}</mat-option>
     </mat-select>
   </mat-form-field>
 
   <mat-form-field fxFlex>
     <mat-label>Order Number</mat-label>
-    <input matInput formControlName="Belgeno" name="Belgeno"/>
+    <input matInput formControlName="orderNo" name="orderNo"/>
   </mat-form-field>
 
   <mat-form-field fxFlex>
     <mat-label>Date</mat-label>
-    <input matInput [matDatepicker]="Tarih" formControlName="Tarih" name="Tarih" required/>
-    <mat-datepicker-toggle matSuffix [for]="Tarih"></mat-datepicker-toggle>
-    <mat-datepicker #Tarih></mat-datepicker>
+    <input matInput [matDatepicker]="date" formControlName="date" name="date" required/>
+    <mat-datepicker-toggle matSuffix [for]="date"></mat-datepicker-toggle>
+    <mat-datepicker #date></mat-datepicker>
   </mat-form-field>
 
   <mat-form-field fxFlex>
     <mat-label>Description</mat-label>
-    <input matInput formControlName="Dovkuru" name="Dovkuru" type="number" [required]="form.get('Dovcins').value"/>
+    <input matInput formControlName="description" name="description" type="number" [required]="form.get('currency').value"/>
   </mat-form-field>
 
 </form>
