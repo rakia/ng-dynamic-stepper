@@ -77,10 +77,6 @@ export class OptionSearchOverlayComponent<T> implements OnInit, OnChanges, OnDes
         this.optionSearchConfig.displayedColumns = this.optionSearchConfig.displayColumnDefs.map(col => col.key);
       }
     }
-    if (changes.close && changes.close.currentValue) { // not working yet
-      console.log('this.closeOverlay() working?');
-      this.closeOverlay();
-    }
   }
 
   onSearchQueryChanged(): void {
@@ -110,7 +106,7 @@ export class OptionSearchOverlayComponent<T> implements OnInit, OnChanges, OnDes
 
     /*if (this.isOverlayOpen) {
         this.closeOverlay();
-      }*/
+    }*/
     if (!this.isOverlayOpen) {
       if (!this.currentOption) {
         // console.log('--Overlay focusout --> no option selected');
@@ -122,9 +118,6 @@ export class OptionSearchOverlayComponent<T> implements OnInit, OnChanges, OnDes
           this.valueFormControl.setValue( this.currentOption[this.valueField] );
         }
       }
-    } else {
-      // overlay.searchQuery and overlay.valueFormControl.value will be updated by the component handling "F2 key press" listner (InquiryInDialog)
-      // console.log('--Overlay still open --> No reset if no option is selected');
     }
   }
 
@@ -206,14 +199,14 @@ export class OptionSearchOverlayComponent<T> implements OnInit, OnChanges, OnDes
   }
 
   openOverlay(): void {
-    this.isOverlayOpen      = true;
-    this.highlightRowIndex  = -1;
+    this.isOverlayOpen     = true;
+    this.highlightRowIndex = -1;
     // console.log('--highlightRowIndex = ' + this.highlightRowIndex);
   }
 
   closeOverlay(): void {
-    this.isOverlayOpen      = false;
-    this.highlightRowIndex  = -1;
+    this.isOverlayOpen     = false;
+    this.highlightRowIndex = -1;
     // console.log('--highlightRowIndex = ' + this.highlightRowIndex);
   }
 
