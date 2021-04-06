@@ -153,4 +153,3 @@ export class MatDynamicTableComponent<T> implements OnInit, OnChanges, AfterCont
     }
   }
 }
-
