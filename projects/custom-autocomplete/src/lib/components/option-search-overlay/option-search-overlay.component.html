@@ -3,11 +3,11 @@
   <mat-form-field class="overlay-form-field" fxFlex>
     <mat-label *ngIf="searchLabel">{{ searchLabel }}</mat-label>
     <input matInput #input
-           (focusout)="checkValue()"
            autocomplete="off"
            [formControl]="valueFormControl"
-           cdkOverlayOrigin #trigger="cdkOverlayOrigin"
-           [required]="required">
+           [required]="required"
+           (focusout)="checkValue()"
+           cdkOverlayOrigin #trigger="cdkOverlayOrigin">
 
     <mat-error *ngIf="valueFormControl.hasError('required')">{{ errorMessage }}</mat-error>
   </mat-form-field>
