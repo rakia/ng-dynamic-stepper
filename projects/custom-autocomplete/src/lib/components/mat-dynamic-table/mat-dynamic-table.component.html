@@ -1,60 +1,57 @@
-<div>
-  <div class="table-container small-table">
+<div class="table-container small-table">
 
-    <table mat-table [dataSource]="dataSource.data" matSort #sort="matSort" class="mat-elevation-z2"> <!-- (matSortChange)="sortData($event)" -->
+  <table mat-table [dataSource]="dataSource.data" matSort #sort="matSort" class="mat-elevation-z2"> <!-- (matSortChange)="sortData($event)" -->
 
-      <ng-container *ngIf="displayColumnDefs">
+    <ng-container *ngIf="displayColumnDefs">
 
-        <!-- Checkbox Column *ngIf="showSelectBox" -->
-        <ng-container matColumnDef="select">
-          <th mat-header-cell *matHeaderCellDef>
-            <mat-checkbox (change)="$event ? masterToggle() : null"
-                          [checked]="selection.hasValue() && isAllSelected()"
-                          [indeterminate]="selection.hasValue() && !isAllSelected()"
-                          [aria-label]="checkboxLabel()">
-            </mat-checkbox>
-          </th>
-          <td mat-cell *matCellDef="let row">
-            <mat-checkbox (click)="$event.stopPropagation()"
-                          (change)="$event ? selection.toggle(row) : null; selectRow(row)"
-                          [checked]="selection.isSelected(row)"
-                          [aria-label]="checkboxLabel(row)">
-            </mat-checkbox>
-          </td>
-          <td mat-footer-cell *matFooterCellDef></td>
-        </ng-container>
-
-        <ng-container *ngFor="let col of displayColumnDefs" [matColumnDef]="col.key">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header>  {{ col.label }} </th>
-
-          <td mat-cell *matCellDef="let element; let i = index" [ngClass]="{'highlighted': highlightRowIndex === i}">
-
-            <!-- The pipe number here works as follows: | number : '.2-2'
-                     - Sow at-least 1 integer digit before decimal point, set by default
-                     - Show not less 2 integer digits after the decimal point
-                     - Show not more than 2 integer digits after the decimal point
-            -->
-            <div *ngIf="col.type === 'number'">{{ element[col.key] | number : '1.2' : locale }}</div>
-            <div *ngIf="col.type === 'date'">{{ element[col.key] | date: 'dd.MM.yyyy' }}</div>
-            <div *ngIf="col.type !== 'number' && col.type !== 'date'">{{ element[col.key] }}</div>
-          </td>
-
-          <td mat-footer-cell *matFooterCellDef>
-            <div *ngIf="!col.index"> Total </div>                     <!-- col.index === 0 -->
-            <div *ngIf="col.index && col.hasFooter">{{ col.key | getTotal: this.dataSource.data }}</div> <!-- col.index !== 0 -->
-          </td>
-        </ng-container>
-
-        <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true" class="small-header"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="selectRow(row)"></tr>
-
-        <ng-container *ngIf="showFooter && dataSource.data">
-          <tr mat-footer-row *matFooterRowDef="displayedColumns"></tr>
-        </ng-container>
-
+      <!-- Checkbox Column *ngIf="showSelectBox" -->
+      <ng-container matColumnDef="select">
+        <th mat-header-cell *matHeaderCellDef>
+          <mat-checkbox (change)="$event ? masterToggle() : null"
+                        [checked]="selection.hasValue() && isAllSelected()"
+                        [indeterminate]="selection.hasValue() && !isAllSelected()"
+                        [aria-label]="checkboxLabel()">
+          </mat-checkbox>
+        </th>
+        <td mat-cell *matCellDef="let row">
+          <mat-checkbox (click)="$event.stopPropagation()"
+                        (change)="$event ? selection.toggle(row) : null; selectRow(row)"
+                        [checked]="selection.isSelected(row)"
+                        [aria-label]="checkboxLabel(row)">
+          </mat-checkbox>
+        </td>
+        <td mat-footer-cell *matFooterCellDef></td>
       </ng-container>
-    </table>
 
-  </div>
+      <ng-container *ngFor="let col of displayColumnDefs" [matColumnDef]="col.key">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>  {{ col.label }} </th>
+
+        <td mat-cell *matCellDef="let element; let i = index" [ngClass]="{'highlighted': highlightRowIndex === i}">
+
+          <!-- The pipe number here works as follows: | number : '.2-2'
+                   - Sow at-least 1 integer digit before decimal point, set by default
+                   - Show not less 2 integer digits after the decimal point
+                   - Show not more than 2 integer digits after the decimal point
+          -->
+          <div *ngIf="col.type === 'number'">{{ element[col.key] | number : '1.2' : locale }}</div>
+          <div *ngIf="col.type === 'date'">{{ element[col.key] | date: 'dd.MM.yyyy' }}</div>
+          <div *ngIf="col.type !== 'number' && col.type !== 'date'">{{ element[col.key] }}</div>
+        </td>
+
+        <td mat-footer-cell *matFooterCellDef>
+          <div *ngIf="!col.index"> Total </div>                     <!-- col.index === 0 -->
+          <div *ngIf="col.index && col.hasFooter">{{ col.key | getTotal: this.dataSource.data }}</div> <!-- col.index !== 0 -->
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true" class="small-header"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="selectRow(row)"></tr>
+
+      <ng-container *ngIf="showFooter && dataSource.data">
+        <tr mat-footer-row *matFooterRowDef="displayedColumns"></tr>
+      </ng-container>
+
+    </ng-container>
+  </table>
 
 </div>
