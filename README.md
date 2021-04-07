@@ -1,5 +1,10 @@
 
-The article describing this project is available here: https://medium.com/better-programming/angular-library-dynamic-stepper-2ba05ab40228
+The articles describing this project are available here:
+
+1. Build a Custom Autocomplete-Search Angular App With a Dynamic Table (Play with CSS overlay and Angular Material components): https://betterprogramming.pub/angular-custom-autocomplete-7ffb479477e7
+
+2. Build a Reusable Stepper as an Angular Library (Convey your process’s progress with a dynamic stepper):
+https://medium.com/better-programming/angular-library-dynamic-stepper-2ba05ab40228
 
 # Build a Reusable Stepper as an Angular Library
 ## Convey your process’s progress with a dynamic stepper
