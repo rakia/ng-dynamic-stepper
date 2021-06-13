@@ -1,12 +1,15 @@
 import {
   AfterViewInit, ChangeDetectorRef,
-  Component, ContentChild, EventEmitter, Input, OnChanges,
+  Component, ContentChild, ElementRef, EventEmitter, Input, OnChanges,
   OnDestroy, OnInit, Output,
-  SimpleChanges, TemplateRef, ViewEncapsulation
+  SimpleChanges, TemplateRef, ViewChild, ViewEncapsulation
 } from '@angular/core';
+import { Router } from '@angular/router';
+import { filter, map, withLatestFrom } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 
 import { Step } from '../../models/step.model';
+import { HandGesture} from '../../ml/hand-gesture.service';
 
 @Component({
   selector: 'lib-dynamic-stepper',
@@ -30,21 +33,41 @@ export class DynamicStepperComponent implements OnInit, OnChanges, OnDestroy, Af
   @ContentChild('stepsHeader',  { read: TemplateRef }) stepsHeader:  TemplateRef<any>;
   @ContentChild('stepsContent', { read: TemplateRef }) stepsContent: TemplateRef<any>;
 
-  constructor(private _changeDetectorRef: ChangeDetectorRef) {}
+  // ---- to save hand gesture state
+  @ViewChild('video')         video: ElementRef<HTMLVideoElement>;
+  @ViewChild('canvas')        canvas: ElementRef<HTMLCanvasElement>;
+  // @ContentChild('goNext')     goNext: ElementRef<HTMLAnchorElement>;
+  // @ContentChild('goPrevious') goPrevious: ElementRef<HTMLAnchorElement>;
+  opened$ = this.recognizer.swipe$.pipe(
+    filter(value => value === 'left' || value === 'right'),
+    map(value => value === 'right')
+  );
+  selection$ = this.recognizer.gesture$.pipe(
+    filter(value => value === 'one' || value === 'two'), //  || value === 'ok'
+    map(value => (value === 'one' ? 0 : 1)) // : (value === 'two') ? 1 : 2
+  );
 
-  ngOnInit(): void {
-    this.totalSteps = this.steps ? this.steps.length : 0;
+  constructor(private recognizer: HandGesture, private router: Router, private _changeDetectorRef: ChangeDetectorRef) {
+    this.recognizer.gesture$.pipe(
+      filter(value => value === 'ok'),
+      withLatestFrom(this.selection$)
+    )
+      .subscribe(([_, stepNumber]) => this.onGotoStep(stepNumber)); // this.router.navigateByUrl(page)
   }
 
-  ngOnChanges(changes: SimpleChanges): void {
-    if (changes.currentStep && changes.currentStep.currentValue) {
-      this._changeDetectorRef.detectChanges(); // Run change detection so the change in the animation direction registered
-    }
+  get stream(): MediaStream {
+    return this.recognizer.stream;
   }
 
-  ngAfterViewInit(): void {}
+  ngAfterViewInit(): void {
+    this.recognizer.initialize(
+      this.canvas.nativeElement,
+      this.video.nativeElement
+    );
+  }
 
   onGotoStep(step): void {
+    console.log('Go to step: ' + Number(step + 1));
     this.gotoStep.emit(step);
   }
 
@@ -57,6 +80,16 @@ export class DynamicStepperComponent implements OnInit, OnChanges, OnDestroy, Af
       return;
     }
     this.gotoPreviousStep.emit();
+  }
+
+  ngOnInit(): void {
+    this.totalSteps = this.steps ? this.steps.length : 0;
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes.currentStep && changes.currentStep.currentValue) {
+      this._changeDetectorRef.detectChanges(); // Run change detection so the change in the animation direction registered
+    }
   }
 
   ngOnDestroy(): void {

@@ -2,7 +2,6 @@
 
 #create-stepper {
 
-
   .center {
     position: relative;
     overflow: hidden;
@@ -52,5 +51,13 @@
         margin-left: auto;
       }
     }
+  }
+
+  canvas {
+    transform: scale(0.5);
+    position: absolute;
+    top: -119px;
+    right: -158px;
+    z-index: 2;
   }
 }
