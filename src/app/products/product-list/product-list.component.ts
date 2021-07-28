@@ -1,10 +1,11 @@
-import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { DataSource } from '@angular/cdk/collections';
 import { merge, Observable, Subject } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { getCLS, getFID, getLCP } from 'web-vitals';
 
 import { ProductsService } from '../services/products.service';
 import { Product  } from '../models/product.model';
@@ -16,7 +17,7 @@ import { PRODUCTS } from '../../fake-db/products';
   styleUrls    : ['./product-list.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class ProductListComponent implements OnInit {
+export class ProductListComponent implements OnInit, AfterViewInit {
 
   dataSource: FilesDataSource | null;
   displayedColumns = ['id', 'name', 'category', 'price', 'quantity', 'active'];
@@ -28,6 +29,13 @@ export class ProductListComponent implements OnInit {
 
   constructor(private productsService: ProductsService, private router: Router) {
     this._unsubscribeAll = new Subject();
+  }
+
+  ngAfterViewInit(): void {
+    console.log('----before logging Web Vitals');
+    getCLS(console.log);
+    getFID(console.log);
+    getLCP(console.log);
   }
 
   ngOnInit(): void {
