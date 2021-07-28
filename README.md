@@ -1,9 +1,11 @@
 
 The articles describing this project are available here:
 
-1. Build a Custom Autocomplete-Search Angular App With a Dynamic Table (Play with CSS overlay and Angular Material components): https://betterprogramming.pub/angular-custom-autocomplete-7ffb479477e7
+1. Build a Hand Pose Detector Web App Powered by Machine Learning: https://betterprogramming.pub/build-a-hand-pose-detector-web-app-powered-by-machine-learning-62131ec43db5
 
-2. Build a Reusable Stepper as an Angular Library (Convey your process’s progress with a dynamic stepper):
+2. Build a Custom Autocomplete-Search Angular App With a Dynamic Table (Play with CSS overlay and Angular Material components): https://betterprogramming.pub/angular-custom-autocomplete-7ffb479477e7
+
+3. Build a Reusable Stepper as an Angular Library (Convey your process’s progress with a dynamic stepper):
 https://medium.com/better-programming/angular-library-dynamic-stepper-2ba05ab40228
 
 # Build a Reusable Stepper as an Angular Library
