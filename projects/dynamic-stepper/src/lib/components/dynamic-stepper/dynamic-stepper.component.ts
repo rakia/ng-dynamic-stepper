@@ -34,14 +34,14 @@ export class DynamicStepperComponent implements OnInit, OnChanges, OnDestroy, Af
   @ContentChild('stepsContent', { read: TemplateRef }) stepsContent: TemplateRef<any>;
 
   // ---- to save hand gesture state
-  @ViewChild('video')         video: ElementRef<HTMLVideoElement>;
-  @ViewChild('canvas')        canvas: ElementRef<HTMLCanvasElement>;
+  @ViewChild('video')  video: ElementRef<HTMLVideoElement>;
+  @ViewChild('canvas') canvas: ElementRef<HTMLCanvasElement>;
   // @ContentChild('goNext')     goNext: ElementRef<HTMLAnchorElement>;
   // @ContentChild('goPrevious') goPrevious: ElementRef<HTMLAnchorElement>;
-  opened$ = this.recognizer.swipe$.pipe(
+  /*opened$ = this.recognizer.swipe$.pipe(
     filter(value => value === 'left' || value === 'right'),
     map(value => value === 'right')
-  );
+  );*/
   selection$ = this.recognizer.gesture$.pipe(
     filter(value => value === 'one' || value === 'two'), //  || value === 'ok'
     map(value => (value === 'one' ? 0 : 1)) // : (value === 'two') ? 1 : 2
