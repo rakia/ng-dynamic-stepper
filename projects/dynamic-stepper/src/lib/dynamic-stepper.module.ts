@@ -6,6 +6,7 @@ import { FlexLayoutModule        } from '@angular/flex-layout';
 import { AngularMaterialModule   } from './shared/angular-material.module';
 import { StepsHeaderComponent    } from './components/steps-header/steps-header.component';
 import { DynamicStepperComponent } from './components/dynamic-stepper/dynamic-stepper.component';
+import { HandGesture             } from './ml/hand-gesture.service';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { DynamicStepperComponent } from './components/dynamic-stepper/dynamic-st
   exports: [
     DynamicStepperComponent,
     StepsHeaderComponent
-  ]
+  ],
+  providers: [ HandGesture ]
 })
 export class DynamicStepperModule { }
