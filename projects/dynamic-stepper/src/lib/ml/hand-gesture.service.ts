@@ -92,6 +92,7 @@ export class HandGesture {
   private _processGesture(landmarks: any): void {
     const { gestures } = GE.estimate(landmarks, 7.5) || [];
     let gesture = null;
+    // console.log('---- _processGesture(): gestures length = ' + gestures.length);
     for (const g of gestures) {
       if (g.name === 'victory' || g.name === 'thumbs_up') {
         gesture = g.name;
@@ -106,10 +107,7 @@ export class HandGesture {
       this._lastGestureTiemstamp = Date.now();
       this._emitGesture = true;
     } else {
-      if (
-        this._emitGesture &&
-        this._toSeconds(Date.now() - this._lastGestureTiemstamp) > 1
-      ) {
+      if (this._emitGesture && this._toSeconds(Date.now() - this._lastGestureTiemstamp) > 1) {
         this._gesture$.next(GestureMap[this._lastGesture]);
         this._emitGesture = false;
       }
@@ -126,18 +124,12 @@ export class HandGesture {
     if (!this._initiated) {
       return;
     }
-    if (
-      this._inRegion(0, 0.1, middle) &&
-      this._toSeconds(Date.now() - this._initialTimestamp) < 2
-    ) {
+    if (this._inRegion(0, 0.1, middle) && this._toSeconds(Date.now() - this._initialTimestamp) < 2) {
       this._swipe$.next('right');
       this._initiated = false;
       return;
     }
-    if (
-      this._inRegion(0.9, 1, middle) &&
-      this._toSeconds(Date.now() - this._initialTimestamp) < 2
-    ) {
+    if (this._inRegion(0.9, 1, middle) && this._toSeconds(Date.now() - this._initialTimestamp) < 2) {
       this._swipe$.next('left');
       this._initiated = false;
       return;
