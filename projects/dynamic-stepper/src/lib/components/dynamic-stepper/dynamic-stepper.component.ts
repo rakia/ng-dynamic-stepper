@@ -5,11 +5,11 @@ import {
   SimpleChanges, TemplateRef, ViewChild, ViewEncapsulation
 } from '@angular/core';
 import { Router } from '@angular/router';
-import { filter, map, withLatestFrom } from 'rxjs/operators';
+import { filter, map, takeUntil, withLatestFrom } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 
 import { Step } from '../../models/step.model';
-import { HandGesture} from '../../ml/hand-gesture.service';
+import { HandGesture } from '../../ml/hand-gesture.service';
 
 @Component({
   selector: 'lib-dynamic-stepper',
@@ -43,12 +43,19 @@ export class DynamicStepperComponent implements OnInit, OnChanges, OnDestroy, Af
     map(value => value === 'right')
   );*/
   selection$ = this.recognizer.gesture$.pipe(
+    takeUntil(this._unsubscribeAll), // <------ Added to avoid memory leaks
     filter(value => value === 'one' || value === 'two'), //  || value === 'ok'
     map(value => (value === 'one' ? 0 : 1)) // : (value === 'two') ? 1 : 2
   );
 
+  /**
+   * @param recognizer
+   * @param router
+   * @param _changeDetectorRef
+   */
   constructor(private recognizer: HandGesture, private router: Router, private _changeDetectorRef: ChangeDetectorRef) {
     this.recognizer.gesture$.pipe(
+      takeUntil(this._unsubscribeAll), // <------ Added to avoid memory leaks
       filter(value => value === 'ok'),
       withLatestFrom(this.selection$)
     )
@@ -93,6 +100,7 @@ export class DynamicStepperComponent implements OnInit, OnChanges, OnDestroy, Af
   }
 
   ngOnDestroy(): void {
+    // this.recognizer.stream.removeEventListener()
     this._unsubscribeAll.next(true);
     this._unsubscribeAll.unsubscribe();
   }
