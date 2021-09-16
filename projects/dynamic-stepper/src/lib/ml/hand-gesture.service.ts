@@ -20,7 +20,7 @@ type Point     = [number, number];
 type Rect      = { topLeft: [number, number]; bottomRight: [number, number] };
 
 @Injectable() // { providedIn: 'root' }
-export class HandGesture {
+export class HandGestureService {
 
   private _swipe$ = new BehaviorSubject<Direction>('none');
   readonly swipe$ = this._swipe$.asObservable();
