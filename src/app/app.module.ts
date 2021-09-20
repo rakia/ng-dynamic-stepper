@@ -5,6 +5,7 @@ import { AppComponent     } from './app.component';
 import { ProductsModule   } from './products/products.module';
 import { OrdersModule     } from './orders/orders.module';
 import { TimerModule      } from './timer/timer.module';
+import { DynamicStepperModule } from '../../projects/dynamic-stepper/src/lib/dynamic-stepper.module';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { TimerModule      } from './timer/timer.module';
     AppRoutingModule,
     OrdersModule,
     ProductsModule,
-    TimerModule
+    TimerModule,
+    DynamicStepperModule // .forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
