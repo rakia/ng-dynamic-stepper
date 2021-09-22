@@ -6,6 +6,7 @@ import '@tensorflow/tfjs-backend-cpu';
 
 import { drawKeypoints } from './hand-renderer';
 import { GE } from './fingere-gesture';
+import { HandPose } from '@tensorflow-models/handpose';
 
 const GestureMap = {
   thumbs_up:  'ok',
@@ -35,9 +36,14 @@ export class HandGestureService {
   private _lastGestureTiemstamp = -1;
   private _lastGesture = null;
   private _emitGesture = true;
+  private _handPoseModel: HandPose;
 
   get stream(): MediaStream {
     return this._stream;
+  }
+
+  constructor() {
+    console.log('---- New instance HandGestureService');
   }
 
   initialize(canvas: HTMLCanvasElement, video: HTMLVideoElement): void {
@@ -45,42 +51,62 @@ export class HandGestureService {
 
     navigator.mediaDevices
       .getUserMedia({ video: true })
-      .then((stream) => {
+      .then(async (stream) => {
         this._stream = stream;
-        return handpose.load();
+
+        if (!this._handPoseModel) {
+          console.log('---- Calling handpose.load()');
+          // Load the MediaPipe HandPose model assets
+          this._handPoseModel = await handpose.load();
+          return this._handPoseModel;
+        } else {
+          console.log('---- return this._handPoseModel');
+          return this._handPoseModel;
+        }
       })
 
       .then((model) => {
-        const context = canvas.getContext('2d');
-        context.clearRect(0, 0, video.width, video.height);
-        context.strokeStyle = 'red';
-        context.fillStyle = 'red';
+        video.addEventListener('loadeddata', (e) => {
+          console.log('---- Video is loaded!');
 
-        context.translate(canvas.width, 0);
-        context.scale(-1, 1);
-        const runDetection = () => {
-          model.estimateHands(video).then((predictions) => {
-            // Render
-            context.drawImage(
-              video,
-              0,
-              0,
-              video.width,
-              video.height,
-              0,
-              0,
-              canvas.width,
-              canvas.height
-            );
-            if (predictions && predictions[0]) {
-              drawKeypoints(context, predictions[0].landmarks);
-              this._process(predictions[0].boundingBox);
-              this._processGesture(predictions[0].landmarks);
-            }
-            requestAnimationFrame(runDetection);
-          });
-        };
-        runDetection();
+          console.log('---- get canvas context');
+          const context = canvas.getContext('2d');
+          context.clearRect(0, 0, video.width, video.height);
+          context.strokeStyle = 'red';
+          context.fillStyle = 'red';
+
+          context.translate(canvas.width, 0);
+          context.scale(-1, 1);
+          const runDetection = () => {
+
+            // Pass in a video stream to the model to obtain a prediction from the MediaPipe graph
+            model.estimateHands(video).then((predictions) => {
+
+              // Each hand object contains a `landmarks` property, which is an array of 21 3-D landmarks
+              // predictions.forEach(hand => console.log('---- hand.landmarks: ' + hand.landmarks));
+
+              // Render
+              context.drawImage(
+                video,
+                0,
+                0,
+                video.width,
+                video.height,
+                0,
+                0,
+                canvas.width,
+                canvas.height
+              );
+              if (predictions && predictions[0]) {
+                drawKeypoints(context, predictions[0].landmarks);
+                this._process(predictions[0].boundingBox);
+                this._processGesture(predictions[0].landmarks);
+              }
+              requestAnimationFrame(runDetection);
+            });
+          };
+          runDetection();
+        });
       })
       .catch((err) => {
         console.error(err);
