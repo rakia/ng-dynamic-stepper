@@ -19,7 +19,7 @@ type Size      = [number, number];
 type Point     = [number, number];
 type Rect      = { topLeft: [number, number]; bottomRight: [number, number] };
 
-@Injectable() // { providedIn: 'root' }
+@Injectable({ providedIn: 'root' })
 export class HandGestureService {
 
   private _swipe$ = new BehaviorSubject<Direction>('none');

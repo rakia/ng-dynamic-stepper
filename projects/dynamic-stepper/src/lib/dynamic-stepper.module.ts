@@ -23,6 +23,6 @@ import { HandGestureService      } from './ml/hand-gesture.service';
     DynamicStepperComponent,
     StepsHeaderComponent
   ],
-  providers: [ HandGestureService ]
+  // providers: [ HandGestureService ]
 })
 export class DynamicStepperModule { }
