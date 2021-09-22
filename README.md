@@ -1,3 +1,8 @@
+💡 🧠 Join my free email newsletter about engineering, technology, and leadership: https://rakiabensassi.substack.com
+
+You can follow me and find more of my articles here: https://rakiabensassi.medium.com/
+And if you would like to support me, you can sign up here: https://rakiabensassi.medium.com/membership
+
 I've published few articles describing this project here:
 
 1. Build a Reusable Stepper as an Angular Library (Convey your process’s progress with a dynamic stepper):
@@ -10,9 +15,6 @@ https://medium.com/better-programming/angular-library-dynamic-stepper-2ba05ab402
 4. How to Host and Deploy an Angular App on Firebase: https://levelup.gitconnected.com/host-and-deploy-on-firebase-cbca4aad2fa6
 
 5. How TensorFlow.js Became a Performance Bottleneck for My App: https://betterprogramming.pub/web-performance-and-tensorflow-js-3db05b1de958
-
-You can follow me and find more of my articles here: https://rakiabensassi.medium.com/
-and if you would like to support me, you can sign up here: https://rakiabensassi.medium.com/membership
 
 # Build a Reusable Stepper as an Angular Library
 ## Convey your process’s progress with a dynamic stepper
