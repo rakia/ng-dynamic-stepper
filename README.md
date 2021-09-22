@@ -12,7 +12,7 @@ https://medium.com/better-programming/angular-library-dynamic-stepper-2ba05ab402
 5. How TensorFlow.js Became a Performance Bottleneck for My App: https://betterprogramming.pub/web-performance-and-tensorflow-js-3db05b1de958
 
 You can follow me and find more of my articles here: https://rakiabensassi.medium.com/
-And if you would like to support me, you can sign up here: https://rakiabensassi.medium.com/membership
+and if you would like to support me, you can sign up here: https://rakiabensassi.medium.com/membership
 
 # Build a Reusable Stepper as an Angular Library
 ## Convey your process’s progress with a dynamic stepper
