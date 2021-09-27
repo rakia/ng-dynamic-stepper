@@ -38,12 +38,12 @@ export class DynamicStepperComponent implements OnInit, OnChanges, OnDestroy, Af
   @ViewChild('canvas') canvas: ElementRef<HTMLCanvasElement>;
   // @ContentChild('goNext')     goNext: ElementRef<HTMLAnchorElement>;
   // @ContentChild('goPrevious') goPrevious: ElementRef<HTMLAnchorElement>;
-  /*opened$ = this.handGestureService.swipe$.pipe(
+  opened$ = this.handGestureService.swipe$.pipe(
     filter(value => value === 'left' || value === 'right'),
     map(value => value === 'right')
-  );*/
+  );
   selection$ = this.handGestureService.gesture$.pipe(
-    takeUntil(this._unsubscribeAll), // <------ Added to avoid memory leaks
+    takeUntil(this._unsubscribeAll),
     filter(value => value === 'one' || value === 'two'), //  || value === 'ok'
     map(value => (value === 'one' ? 0 : 1)) // : (value === 'two') ? 1 : 2
   );
@@ -55,7 +55,7 @@ export class DynamicStepperComponent implements OnInit, OnChanges, OnDestroy, Af
    */
   constructor(private handGestureService: HandGestureService, private router: Router, private _changeDetectorRef: ChangeDetectorRef) {
     this.handGestureService.gesture$.pipe(
-      takeUntil(this._unsubscribeAll), // <------ Added to avoid memory leaks
+      takeUntil(this._unsubscribeAll),
       filter(value => value === 'ok'),
       withLatestFrom(this.selection$)
     )
@@ -67,6 +67,7 @@ export class DynamicStepperComponent implements OnInit, OnChanges, OnDestroy, Af
   }
 
   ngAfterViewInit(): void {
+    console.log('---- handGestureService.initialize()');
     this.handGestureService.initialize(
       this.canvas.nativeElement,
       this.video.nativeElement
