@@ -16,6 +16,8 @@ https://medium.com/better-programming/angular-library-dynamic-stepper-2ba05ab402
 
 5. How TensorFlow.js Became a Performance Bottleneck for My App: https://betterprogramming.pub/web-performance-and-tensorflow-js-3db05b1de958
 
+6. How I Won My Battle of Using TensorFlow.js Without Leaking Memory: https://levelup.gitconnected.com/how-to-use-tensorflow-js-without-memory-leaks-273ad16196be
+
 # Build a Reusable Stepper as an Angular Library
 ## Convey your process’s progress with a dynamic stepper
 
