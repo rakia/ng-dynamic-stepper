@@ -1,12 +1,20 @@
+💡 🧠 Join my free email newsletter about engineering, technology, and leadership: https://rakiabensassi.substack.com
 
-The articles describing this project are available here:
+You can follow me and find more of my articles here: https://rakiabensassi.medium.com/
+And if you would like to support me, you can sign up here: https://rakiabensassi.medium.com/membership
 
-1. Build a Hand Pose Detector Web App Powered by Machine Learning: https://betterprogramming.pub/build-a-hand-pose-detector-web-app-powered-by-machine-learning-62131ec43db5
+I've published few articles describing this project here:
+
+1. Build a Reusable Stepper as an Angular Library (Convey your process’s progress with a dynamic stepper):
+https://medium.com/better-programming/angular-library-dynamic-stepper-2ba05ab40228
 
 2. Build a Custom Autocomplete-Search Angular App With a Dynamic Table (Play with CSS overlay and Angular Material components): https://betterprogramming.pub/angular-custom-autocomplete-7ffb479477e7
 
-3. Build a Reusable Stepper as an Angular Library (Convey your process’s progress with a dynamic stepper):
-https://medium.com/better-programming/angular-library-dynamic-stepper-2ba05ab40228
+3. Build a Hand Pose Detector Web App Powered by Machine Learning: https://betterprogramming.pub/build-a-hand-pose-detector-web-app-powered-by-machine-learning-62131ec43db5
+
+4. How to Host and Deploy an Angular App on Firebase: https://levelup.gitconnected.com/host-and-deploy-on-firebase-cbca4aad2fa6
+
+5. How TensorFlow.js Became a Performance Bottleneck for My App: https://betterprogramming.pub/web-performance-and-tensorflow-js-3db05b1de958
 
 # Build a Reusable Stepper as an Angular Library
 ## Convey your process’s progress with a dynamic stepper
